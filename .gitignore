@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.log
+
+# Virtual env
+.venv/
+venv/
+ENV/
+env/
+*.env
+*.env.*
+
+# Django
+db.sqlite3
+media/
+staticfiles/
+*.pot
+*.pyc
+*.pyo
+*.pyd
+
+# VSCode & JetBrains
+.vscode/
+.idea/
+
+# System
+.DS_Store
+Thumbs.db
+
+# Pip
+pip-log.txt
+
+# Mac
+*.DS_Store
+
+# Windows
+*.pyd
+*.exe
+*.dll
+
+# Test coverage
+htmlcov/
+.coverage
+.tox/
+.nox/
+.cache
+pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints

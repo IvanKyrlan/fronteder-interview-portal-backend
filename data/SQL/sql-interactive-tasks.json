@@ -1,0 +1,455 @@
+{
+  "test_title": "SQL",
+  "tasks": [
+    {
+      "title": "Заповнити пропуск: псевдонім стовпця",
+      "description": "Додайте псевдонім для стовпця total_price у запиті.",
+      "initial_code": "SELECT order_id, SUM(price * qty) /* пропуск */\nFROM orders\nGROUP BY order_id;",
+      "task_type": "fill_gap",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "SELECT order_id, SUM(price * qty) AS total_price\nFROM orders\nGROUP BY order_id;",
+          "is_primary": true,
+          "hint": "AS задає зрозумілий псевдонім колонці."
+        },
+        {
+          "code": "SELECT order_id, SUM(price * qty) total_price\nFROM orders\nGROUP BY order_id;",
+          "hint": "Псевдонім можна вказати без ключового слова AS."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: знайти другу максимальну зарплату",
+      "description": "Напишіть запит, щоб знайти другу за величиною зарплату в таблиці employees.",
+      "initial_code": "/* вставити запит тут */",
+      "task_type": "complete",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": "SELECT MAX(salary) AS second_highest\nFROM employees\nWHERE salary < (\n  SELECT MAX(salary) FROM employees\n);",
+          "is_primary": true,
+          "hint": "Використовуйте вкладений запит для першого максимуму."
+        },
+        {
+          "code": "SELECT DISTINCT salary\nFROM employees\nORDER BY salary DESC\nLIMIT 1 OFFSET 1;",
+          "hint": "OFFSET дозволяє пропустити перший запис."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: відсутній GROUP BY",
+      "description": "Запит викликає помилку, бо використовується агрегат і неагрегований стовпець без GROUP BY.",
+      "initial_code": "SELECT department, COUNT(*)\nFROM employees;",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "SELECT department, COUNT(*)\nFROM employees\nGROUP BY department;",
+          "is_primary": true,
+          "hint": "Додайте GROUP BY для неагрегованого стовпця."
+        },
+        {
+          "code": "SELECT 'all' AS department, COUNT(*)\nFROM employees;",
+          "hint": "Або прибрати department з SELECT."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: умова JOIN",
+      "description": "Вставте умову з'єднання між orders і customers за customer_id.",
+      "initial_code": "SELECT o.id, c.name\nFROM orders o\nJOIN customers c ON /* пропуск */;",
+      "task_type": "fill_gap",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "SELECT o.id, c.name\nFROM orders o\nJOIN customers c ON o.customer_id = c.id;",
+          "is_primary": true,
+          "hint": "JOIN ON порівнює ключі між таблицями."
+        },
+        {
+          "code": "SELECT o.id, c.name\nFROM orders o\nJOIN customers c ON c.id = o.customer_id;",
+          "hint": "Порядок умов не має значення."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: підрахунок унікальних клієнтів",
+      "description": "Підрахуйте кількість унікальних клієнтів у таблиці orders.",
+      "initial_code": "SELECT /* вставити код */\nFROM orders;",
+      "task_type": "complete",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "SELECT COUNT(DISTINCT customer_id) AS unique_customers\nFROM orders;",
+          "is_primary": true,
+          "hint": "DISTINCT усуває дублікати перед агрегацією."
+        },
+        {
+          "code": "SELECT COUNT(customer_id) - COUNT(customer_id) FILTER (WHERE customer_id IS NULL) AS unique_customers\nFROM orders;",
+          "hint": "FILTER дозволяє відфільтрувати NULL."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: WHERE замість HAVING",
+      "description": "Запит хоче відфільтрувати агреговані результати, але використовує WHERE.",
+      "initial_code": "SELECT product_id, SUM(qty) AS total\nFROM sales\nWHERE SUM(qty) > 100\nGROUP BY product_id;",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "SELECT product_id, SUM(qty) AS total\nFROM sales\nGROUP BY product_id\nHAVING SUM(qty) > 100;",
+          "is_primary": true,
+          "hint": "HAVING фільтрує після агрегації."
+        },
+        {
+          "code": "SELECT product_id, SUM(qty) AS total\nFROM sales\nWHERE qty > 0\nGROUP BY product_id\nHAVING SUM(qty) > 100;",
+          "hint": "WHERE може обмежити рядки до агрегації."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: умовний вираз CASE",
+      "description": "Напишіть CASE, який повертає 'High' для qty > 10, інакше 'Low'.",
+      "initial_code": "SELECT order_id,\n  CASE WHEN /* пропуск */ END AS size_category\nFROM orders;",
+      "task_type": "fill_gap",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "SELECT order_id,\n  CASE WHEN qty > 10 THEN 'High' ELSE 'Low' END AS size_category\nFROM orders;",
+          "is_primary": true,
+          "hint": "CASE WHEN ... THEN ... ELSE ... END."
+        },
+        {
+          "code": "SELECT order_id,\n  CASE WHEN qty >= 10 THEN 'High' ELSE 'Low' END AS size_category\nFROM orders;",
+          "hint": "Можна використовувати >= залежно від логіки."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: корельований підзапит",
+      "description": "Знайдіть кожного співробітника з зарплатою вище середньої по його відділу.",
+      "initial_code": "SELECT e.name, e.salary\nFROM employees e\nWHERE /* вставити тут */;",
+      "task_type": "complete",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": "SELECT e.name, e.salary\nFROM employees e\nWHERE e.salary > (\n  SELECT AVG(salary)\n  FROM employees\n  WHERE department = e.department\n);",
+          "is_primary": true,
+          "hint": "Корельований підзапит посилається на зовнішній alias."
+        },
+        {
+          "code": "SELECT e.name, e.salary\nFROM employees e\nWHERE e.salary > ALL (\n  SELECT AVG(salary)\n  FROM employees\n  GROUP BY department\n);",
+          "hint": "ALL перевіряє проти всіх значень, але дає іншу логіку."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: ROW_NUMBER",
+      "description": "Надайте кожному замовленню у відділі порядковий номер за датою.",
+      "initial_code": "SELECT order_id, department,\n  ROW_NUMBER() OVER (PARTITION BY department ORDER BY order_date) AS rn\nFROM orders;",
+      "task_type": "fill_gap",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": "SELECT order_id, department,\n  ROW_NUMBER() OVER (PARTITION BY department ORDER BY order_date) AS rn\nFROM orders;",
+          "is_primary": true,
+          "hint": "ROW_NUMBER нумерує рядки в межах PARTITION."
+        },
+        {
+          "code": "SELECT order_id, department,\n  RANK() OVER (PARTITION BY department ORDER BY order_date) AS rn\nFROM orders;",
+          "hint": "RANK додає однаковий номер для рівних значень."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: використання аліасу в WHERE",
+      "description": "Запит не працює, бо WHERE не бачить аліасів SELECT.",
+      "initial_code": "SELECT product_id, SUM(qty) AS total\nFROM sales\nWHERE total > 50\nGROUP BY product_id;",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "SELECT product_id, SUM(qty) AS total\nFROM sales\nGROUP BY product_id\nHAVING SUM(qty) > 50;",
+          "is_primary": true,
+          "hint": "WHERE не може фільтрувати за аліасом сукупності."
+        },
+        {
+          "code": "SELECT product_id, SUM(qty) AS total\nFROM sales\nWHERE qty > 0\nGROUP BY product_id\nHAVING SUM(qty) > 50;",
+          "hint": "Поєднайте WHERE для деталей та HAVING для агрегатів."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: використання CTE",
+      "description": "Використайте WITH для пояснення вкладеного підзапиту.",
+      "initial_code": "WITH high_orders AS (\n  SELECT * FROM orders WHERE total > 100\n)\n/* вставити тут */",
+      "task_type": "complete",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": "SELECT * FROM high_orders WHERE status = 'shipped';",
+          "is_primary": true,
+          "hint": "CTE можна використовувати у подальших запитах."
+        },
+        {
+          "code": "SELECT order_id, total FROM high_orders;",
+          "hint": "CTE дозволяє звертатися до визначеного набору рядків."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: EXISTS замість IN",
+      "description": "Перевірте, чи є у клієнта хоча б одне замовлення.",
+      "initial_code": "SELECT name\nFROM customers c\nWHERE /* пропуск */;",
+      "task_type": "fill_gap",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "SELECT name\nFROM customers c\nWHERE EXISTS (SELECT 1 FROM orders o WHERE o.customer_id = c.id);",
+          "is_primary": true,
+          "hint": "EXISTS перевіряє наявність рядків."
+        },
+        {
+          "code": "SELECT name\nFROM customers c\nWHERE c.id IN (SELECT customer_id FROM orders);",
+          "hint": "IN також перевіряє членство у наборі."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: неправильний формат дати",
+      "description": "Запит з фільтром по date не повертає результатів через неправильний літерал.",
+      "initial_code": "SELECT * FROM events WHERE event_date = '2025-5-1';",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "SELECT * FROM events WHERE event_date = '2025-05-01';",
+          "is_primary": true,
+          "hint": "Дата має бути у форматі YYYY-MM-DD з нулями."
+        },
+        {
+          "code": "SELECT * FROM events WHERE event_date = DATE '2025-05-01';",
+          "hint": "В явному зазначенні типу DATE."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: знайти пропущені ID",
+      "description": "Напишіть запит, щоб знайти відсутні id у таблиці sequence від 1 до 100.",
+      "initial_code": "/* вставити тут */",
+      "task_type": "complete",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": "SELECT s.id + 1 AS missing_id\nFROM sequence s\nLEFT JOIN sequence s2 ON s.id + 1 = s2.id\nWHERE s2.id IS NULL\nAND s.id < 100;",
+          "is_primary": true,
+          "hint": "Логіка LEFT JOIN дозволяє знайти відсутні сусіди."
+        },
+        {
+          "code": "SELECT generate_series(1,100) AS id\nEXCEPT\nSELECT id FROM sequence;",
+          "hint": "generate_series з EXCEPT простіше в PostgreSQL."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: COALESCE для NULL",
+      "description": "Замініть NULL в discount на 0.",
+      "initial_code": "SELECT order_id, /* пропуск */ AS discount\nFROM orders;",
+      "task_type": "fill_gap",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "SELECT order_id, COALESCE(discount, 0) AS discount\nFROM orders;",
+          "is_primary": true,
+          "hint": "COALESCE повертає перше ненульове значення."
+        },
+        {
+          "code": "SELECT order_id, IFNULL(discount, 0) AS discount\nFROM orders;",
+          "hint": "IFNULL у MySQL — аналог COALESCE."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: UNION vs UNION ALL",
+      "description": "Об’єднайте результати двох таблиць без дублювання.",
+      "initial_code": "SELECT id FROM table1\n/* вставити тут */\nSELECT id FROM table2;",
+      "task_type": "complete",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "SELECT id FROM table1\nUNION\nSELECT id FROM table2;",
+          "is_primary": true,
+          "hint": "UNION усуває дублікати."
+        },
+        {
+          "code": "SELECT id FROM table1\nUNION ALL\nSELECT id FROM table2;",
+          "hint": "UNION ALL об’єднує з дублюваннями."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: фільтрація NULL в DISTINCT",
+      "description": "DISTINCT не усуває NULL, потрібно їх виключити явно.",
+      "initial_code": "SELECT DISTINCT country FROM users;",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "SELECT DISTINCT country FROM users WHERE country IS NOT NULL;",
+          "is_primary": true,
+          "hint": "WHERE виключає NULL до DISTINCT."
+        },
+        {
+          "code": "SELECT country FROM users WHERE country IS NOT NULL GROUP BY country;",
+          "hint": "GROUP BY теж дає унікальні значення."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: різниця дат",
+      "description": "Порахуй різницю в днях між two_date та one_date.",
+      "initial_code": "SELECT DATEDIFF(/* пропуск */) AS days_diff;",
+      "task_type": "fill_gap",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": "SELECT DATEDIFF(one_date, two_date) AS days_diff;",
+          "is_primary": true,
+          "hint": "DATEDIFF приймає (start, end)."
+        },
+        {
+          "code": "SELECT DATEDIFF(two_date, one_date) AS days_diff;",
+          "hint": "В MySQL параметри можуть бути в будь–якому порядку."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: поворот рядків у стовпці",
+      "description": "За допомогою CASE поверніть колонки Jan, Feb, Mar з таблиці sales у три рядки month, amount.",
+      "initial_code": "SELECT /* вставити тут */\nFROM sales;",
+      "task_type": "complete",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": "WITH unpivot_month AS (\n  SELECT id, 'Jan' AS month, Jan AS amount FROM sales\n  UNION ALL\n  SELECT id, 'Feb', Feb FROM sales\n  UNION ALL\n  SELECT id, 'Mar', Mar FROM sales\n)\nSELECT * FROM unpivot_month;",
+          "is_primary": true,
+          "hint": "UNION ALL зіставляє колонки до рядків."
+        },
+        {
+          "code": "SELECT id, 'Jan' month, Jan amount FROM sales\nUNION ALL\nSELECT id, 'Feb', Feb FROM sales\nUNION ALL\nSELECT id, 'Mar', Mar FROM sales;",
+          "hint": "Пряма серія UNION ALL без CTE."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: сортування кількох колонок",
+      "description": "Відсортуйте спочатку за dept ASC, потім salary DESC.",
+      "initial_code": "SELECT * FROM employees\nORDER BY /* пропуск */;",
+      "task_type": "fill_gap",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "SELECT * FROM employees\nORDER BY department ASC, salary DESC;",
+          "is_primary": true,
+          "hint": "Можна вказати порядок для кожного стовпця."
+        },
+        {
+          "code": "SELECT * FROM employees\nORDER BY department, salary DESC;",
+          "hint": "ASC є значенням за замовчуванням."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: OFFSET без ORDER BY",
+      "description": "OFFSET застосовується лише з ORDER BY.",
+      "initial_code": "SELECT * FROM products\nOFFSET 10 ROWS;",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "SELECT * FROM products\nORDER BY id\nOFFSET 10 ROWS;",
+          "is_primary": true,
+          "hint": "OFFSET має йти після ORDER BY."
+        },
+        {
+          "code": "SELECT * FROM products\nORDER BY name DESC\nOFFSET 10 ROWS FETCH NEXT 5 ROWS ONLY;",
+          "hint": "FETCH NEXT обмежує кількість результатів."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: створення таблиці зв’язків",
+      "description": "Напишіть DDL для junction table order_products між orders та products.",
+      "initial_code": "/* вставити CREATE TABLE тут */",
+      "task_type": "complete",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": "CREATE TABLE order_products (\n  order_id INT,\n  product_id INT,\n  qty INT,\n  PRIMARY KEY (order_id, product_id),\n  FOREIGN KEY (order_id) REFERENCES orders(id),\n  FOREIGN KEY (product_id) REFERENCES products(id)\n);",
+          "is_primary": true,
+          "hint": "Декілька ключів та зв’язків у одній таблиці."
+        },
+        {
+          "code": "CREATE TABLE order_products (\n  id SERIAL PRIMARY KEY,\n  order_id INT REFERENCES orders(id),\n  product_id INT REFERENCES products(id),\n  qty INT\n);",
+          "hint": "Автоінкрементний ключ замість складеного PK."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: CHAR_LENGTH vs LENGTH",
+      "description": "Виберіть функцію для підрахунку символів у Unicode-рядку.",
+      "initial_code": "SELECT /* пропуск */(name) AS char_count FROM users;",
+      "task_type": "fill_gap",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "SELECT CHAR_LENGTH(name) AS char_count FROM users;",
+          "is_primary": true,
+          "hint": "CHAR_LENGTH рахує символи."
+        },
+        {
+          "code": "SELECT LENGTH(name) AS char_count FROM users;",
+          "hint": "LENGTH повертає байти, може відрізнятися."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: пропущений COMMIT",
+      "description": "Після вставки кількох рядків зміни не зберігаються без команди транзакції.",
+      "initial_code": "BEGIN TRANSACTION;\nINSERT INTO users(name) VALUES('Alice');\nINSERT INTO users(name) VALUES('Bob');",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "BEGIN TRANSACTION;\nINSERT INTO users(name) VALUES('Alice');\nINSERT INTO users(name) VALUES('Bob');\nCOMMIT;",
+          "is_primary": true,
+          "hint": "COMMIT зберігає транзакцію."
+        },
+        {
+          "code": "BEGIN TRANSACTION;\nINSERT INTO users(name) VALUES('Alice');\nINSERT INTO users(name) VALUES('Bob');\nROLLBACK; -- якщо потрібно скасувати",
+          "hint": "ROLLBACK відміняє незавершену транзакцію."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: рекурсивний CTE",
+      "description": "Напишіть рекурсивний CTE для обчислення факторіалу числа n=5.",
+      "initial_code": "WITH RECURSIVE fact(n, f) AS (\n  SELECT 1, 1\n  UNION ALL\n  SELECT n+1, f*(n+1) FROM fact WHERE n < 5\n)\nSELECT /* вставити тут */ FROM fact WHERE n = 5;",
+      "task_type": "complete",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": "WITH RECURSIVE fact(n, f) AS (\n  SELECT 1, 1\n  UNION ALL\n  SELECT n+1, f*(n+1) FROM fact WHERE n < 5\n)\nSELECT f AS factorial FROM fact WHERE n = 5;",
+          "is_primary": true,
+          "hint": "Виберіть f — накопичене значення факторіалу."
+        },
+        {
+          "code": "WITH RECURSIVE fact(n, f) AS (\n  SELECT 1, 1\n  UNION ALL\n  SELECT n+1, f*(n+1) FROM fact WHERE n < 5\n)\nSELECT fact.f FROM fact WHERE n = 5;",
+          "hint": "Можна зазначити повний шлях до колонки."
+        }
+      ]
+    }
+  ]
+}

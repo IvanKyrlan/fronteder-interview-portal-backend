@@ -1,0 +1,359 @@
+{
+  "test_title": "React",
+  "tasks": [
+    {
+      "title": "Виправлення некоректного керування станом форми",
+      "description": "У цьому компоненті після submit поле не очищається, а кнопка завжди активна навіть при порожньому інпуті. Виправ помилки.",
+      "initial_code": "function MyForm() {\n  const [value, setValue] = React.useState('');\n  const handleSubmit = e => {\n    e.preventDefault();\n    alert(value);\n  };\n  return (\n    <form onSubmit={handleSubmit}>\n      <input value={value} onChange={e => setValue(e.target.value)} />\n      <button type=\"submit\">Надіслати</button>\n    </form>\n  );\n}",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "function MyForm() {\n  const [value, setValue] = React.useState('');\n  const handleSubmit = e => {\n    e.preventDefault();\n    alert(value);\n    setValue('');\n  };\n  return (\n    <form onSubmit={handleSubmit}>\n      <input value={value} onChange={e => setValue(e.target.value)} />\n      <button type=\"submit\" disabled={!value.trim()}>Надіслати</button>\n    </form>\n  );\n}",
+          "is_primary": true,
+          "hint": "Очищай value після submit, додай disabled={!value.trim()} для кнопки."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: мінімальний лічильник",
+      "description": "У компоненті Counter потрібно замінити пропуск так, щоб кнопка '-' не зменшувала лічильник нижче нуля.",
+      "initial_code": "function Counter() {\n  const [count, setCount] = React.useState(0);\n  return (\n    <>\n      <button onClick={() => setCount(prev => Math.max(0, prev - 1))}>-</button>\n      <span>{count}</span>\n      <button onClick={() => setCount(prev => prev + 1)}>+</button>\n    </>\n  );\n}\n\n// Замість Math.max(0, prev - 1) встав пропуск.",
+      "task_type": "fill_gap",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "prev > 0 ? prev - 1 : 0",
+          "is_primary": true,
+          "hint": "Перевір умову prev > 0 перед відніманням."
+        }
+      ]
+    },
+    {
+      "title": "Виправ баг у логіці рендеру списку",
+      "description": "Компонент List має некоректний ключ у map. Виправ цю помилку, щоб уникнути неочікуваної поведінки React.",
+      "initial_code": "function List({ items }) {\n  return <ul>{items.map((item, i) => <li key={Math.random()}>{item}</li>)}</ul>;\n}",
+      "task_type": "fix_bug",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "function List({ items }) {\n  return <ul>{items.map((item, i) => <li key={i}>{item}</li>)}</ul>;\n}",
+          "is_primary": true,
+          "hint": "Краще використовувати унікальний стабільний ідентифікатор, наприклад, індекс або item, якщо значення гарантовано унікальні."
+        },
+        {
+          "code": "function List({ items }) {\n  return <ul>{items.map(item => <li key={item}>{item}</li>)}</ul>;\n}",
+          "hint": "Якщо item — унікальні значення, їх можна використати як key."
+        }
+      ]
+    },
+    {
+      "title": "Дописати код: контрольований select",
+      "description": "Дописати код для керованого select. Обране значення має відображатися під випадаючим списком.",
+      "initial_code": "function FruitSelect() {\n  // ...\n  return (\n    <>\n      <select>{/* значення та onChange */}</select>\n      <div>Обрано: {/* значення */}</div>\n    </>\n  );\n}",
+      "task_type": "complete",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "function FruitSelect() {\n  const [value, setValue] = React.useState('apple');\n  return (\n    <>\n      <select value={value} onChange={e => setValue(e.target.value)}>\n        <option value=\"apple\">Apple</option>\n        <option value=\"banana\">Banana</option>\n      </select>\n      <div>Обрано: {value}</div>\n    </>\n  );\n}",
+          "is_primary": true,
+          "hint": "Керуй select через useState і встановлюй значення в onChange."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: useEffect cleanup",
+      "description": "У компоненті потрібно додати cleanup-функцію у useEffect для зупинки таймера.",
+      "initial_code": "function Timer() {\n  const [count, setCount] = React.useState(0);\n  React.useEffect(() => {\n    const id = setInterval(() => setCount(c => c + 1), 1000);\n    // пропуск тут\n  }, []);\n  return <div>{count}</div>;\n}\n// Встав пропуск.",
+      "task_type": "fill_gap",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "return () => clearInterval(id);",
+          "is_primary": true,
+          "hint": "Cleanup-функція повертається з useEffect."
+        }
+      ]
+    },
+    {
+      "title": "Дописати код: фокусування input по кліку",
+      "description": "Дописати компонент, щоб при кліку на кнопку input отримував фокус.",
+      "initial_code": "function FocusInput() {\n  // ...\n  return (\n    <>\n      <input />\n      <button>Фокус</button>\n    </>\n  );\n}",
+      "task_type": "complete",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "function FocusInput() {\n  const inputRef = React.useRef();\n  return (\n    <>\n      <input ref={inputRef} />\n      <button onClick={() => inputRef.current.focus()}>Фокус</button>\n    </>\n  );\n}",
+          "is_primary": true,
+          "hint": "Передай ref у input і викликай .focus() у обробнику."
+        }
+      ]
+    },
+    {
+      "title": "Виправ некоректний useEffect",
+      "description": "Компонент має помилку: fetch виконується на кожний рендер, а не лише при монтуванні. Виправ це.",
+      "initial_code": "function Users() {\n  const [users, setUsers] = React.useState([]);\n  React.useEffect(() => {\n    fetch('/api/users').then(res => res.json()).then(setUsers);\n  });\n  return <ul>{users.map(u => <li key={u.id}>{u.name}</li>)}</ul>;\n}",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "function Users() {\n  const [users, setUsers] = React.useState([]);\n  React.useEffect(() => {\n    fetch('/api/users').then(res => res.json()).then(setUsers);\n  }, []);\n  return <ul>{users.map(u => <li key={u.id}>{u.name}</li>)}</ul>;\n}",
+          "is_primary": true,
+          "hint": "Порожній масив залежностей в useEffect – ефект лише після монтування."
+        }
+      ]
+    },
+    {
+      "title": "Дописати код: лічильник за допомогою useReducer",
+      "description": "Створи лічильник, де кнопки '+' і '-' змінюють стан через useReducer.",
+      "initial_code": "function Counter() {\n  // ...\n  return (\n    <>\n      <button>-</button>\n      <span>{/* лічильник */}</span>\n      <button>+</button>\n    </>\n  );\n}",
+      "task_type": "complete",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "function Counter() {\n  const reducer = (state, action) => {\n    if (action === 'inc') return state + 1;\n    if (action === 'dec') return Math.max(0, state - 1);\n    return state;\n  };\n  const [count, dispatch] = React.useReducer(reducer, 0);\n  return (\n    <>\n      <button onClick={() => dispatch('dec')}>-</button>\n      <span>{count}</span>\n      <button onClick={() => dispatch('inc')}>+</button>\n    </>\n  );\n}",
+          "is_primary": true,
+          "hint": "useReducer з двома екшенами — 'inc' і 'dec'."
+        }
+      ]
+    },
+    {
+      "title": "Виправ помилку оновлення списку",
+      "description": "Кнопка повинна видаляти елемент зі списку за id. Але після натискання видаляються не ті елементи. Виправ.",
+      "initial_code": "function List({ items }) {\n  const [arr, setArr] = React.useState(items);\n  const remove = id => setArr(arr.filter(item => item.id !== id));\n  return (\n    <ul>\n      {arr.map(item => <li key={item.id}>{item.value} <button onClick={() => remove(item.id)}>x</button></li>)}\n    </ul>\n  );\n}",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "function List({ items }) {\n  const [arr, setArr] = React.useState(items);\n  const remove = id => setArr(arr => arr.filter(item => item.id !== id));\n  return (\n    <ul>\n      {arr.map(item => <li key={item.id}>{item.value} <button onClick={() => remove(item.id)}>x</button></li>)}\n    </ul>\n  );\n}",
+          "is_primary": true,
+          "hint": "Використовуйте функціональний варіант setArr при оновленні стану на основі попереднього значення."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: мемоізація функції",
+      "description": "У компоненті Button передається функція handleClick, яка створюється при кожному рендері. Заповніть пропуск так, щоб функція мемоізувалась.",
+      "initial_code": "function Parent() {\n  // ...\n  const handleClick = /* пропуск */;\n  return <Button onClick={handleClick} />;\n}",
+      "task_type": "fill_gap",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "React.useCallback(() => {/*...*/}, [])",
+          "is_primary": true,
+          "hint": "useCallback мемоізує функцію між рендерами."
+        }
+      ]
+    },
+    {
+      "title": "Дописати код: useRef для підрахунку рендерів",
+      "description": "Використай useRef, щоб підрахувати скільки разів компонент був відрендерений (без додаткових рендерів).",
+      "initial_code": "function RenderCounter() {\n  // ...\n  return <div>Кількість рендерів: {/* ... */}</div>;\n}",
+      "task_type": "complete",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "function RenderCounter() {\n  const renders = React.useRef(1);\n  React.useEffect(() => { renders.current++; });\n  return <div>Кількість рендерів: {renders.current}</div>;\n}",
+          "is_primary": true,
+          "hint": "useRef дозволяє зберігати значення між рендерами без повторного рендеру."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: Controlled component",
+      "description": "Заповніть пропуск, щоб зробити input контрольованим елементом.",
+      "initial_code": "function ControlledInput() {\n  const [value, setValue] = React.useState('');\n  return <input /* пропуск */ />;\n}",
+      "task_type": "fill_gap",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "value={value} onChange={e => setValue(e.target.value)}",
+          "is_primary": true,
+          "hint": "value та onChange разом роблять input контрольованим."
+        }
+      ]
+    },
+    {
+      "title": "Дописати код: простий toggle-компонент",
+      "description": "Зробіть компонент, який відображає 'ON' або 'OFF' та перемикає стан при кліку.",
+      "initial_code": "function Toggle() {\n  // ...\n  return <button>{/* ON або OFF */}</button>;\n}",
+      "task_type": "complete",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "function Toggle() {\n  const [on, setOn] = React.useState(false);\n  return <button onClick={() => setOn(o => !o)}>{on ? 'ON' : 'OFF'}</button>;\n}",
+          "is_primary": true,
+          "hint": "Стан перемикається через setOn(o => !o)."
+        }
+      ]
+    },
+    {
+      "title": "Виправ помилку синхронізації стану з пропсами",
+      "description": "У цьому компоненті input має початкове значення з пропа defaultValue. Але при зміні defaultValue він не оновлюється. Виправ це.",
+      "initial_code": "function MyInput({ defaultValue }) {\n  const [value, setValue] = React.useState(defaultValue);\n  return <input value={value} onChange={e => setValue(e.target.value)} />;\n}",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "function MyInput({ defaultValue }) {\n  const [value, setValue] = React.useState(defaultValue);\n  React.useEffect(() => {\n    setValue(defaultValue);\n  }, [defaultValue]);\n  return <input value={value} onChange={e => setValue(e.target.value)} />;\n}",
+          "is_primary": true,
+          "hint": "Використайте useEffect для синхронізації стейту з пропом."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: умовний рендеринг",
+      "description": "Замість пропуску вставте вираз, який відображає <div>Ласкаво просимо!</div> лише якщо isLoggedIn === true.",
+      "initial_code": "function Greeting({ isLoggedIn }) {\n  return (\n    <>\n      {/* пропуск */}\n    </>\n  );\n}",
+      "task_type": "fill_gap",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "{isLoggedIn && <div>Ласкаво просимо!</div>}",
+          "is_primary": true,
+          "hint": "&& повертає другий операнд, якщо перший true."
+        }
+      ]
+    },
+    {
+      "title": "Виправ неправильну роботу useEffect із fetch",
+      "description": "Ефект fetch повинен виконуватися лише якщо query змінюється. Виправ помилку.",
+      "initial_code": "function Search({ query }) {\n  const [results, setResults] = React.useState([]);\n  React.useEffect(() => {\n    fetch(`/api?q=${query}`).then(r => r.json()).then(setResults);\n  });\n  return <ul>{results.map(r => <li key={r.id}>{r.value}</li>)}</ul>;\n}",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "function Search({ query }) {\n  const [results, setResults] = React.useState([]);\n  React.useEffect(() => {\n    fetch(`/api?q=${query}`).then(r => r.json()).then(setResults);\n  }, [query]);\n  return <ul>{results.map(r => <li key={r.id}>{r.value}</li>)}</ul>;\n}",
+          "is_primary": true,
+          "hint": "query має бути у масиві залежностей."
+        }
+      ]
+    },
+    {
+      "title": "Дописати код: компонування children",
+      "description": "Реалізуй компонент Box, який рендерить дітей у div з класом 'box'.",
+      "initial_code": "function Box({ children }) {\n  // ...\n}",
+      "task_type": "complete",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "function Box({ children }) {\n  return <div className=\"box\">{children}</div>;\n}",
+          "is_primary": true,
+          "hint": "Доступ до вмісту children — через пропс."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: ефективна зміна стану по ідентифікатору",
+      "description": "Заповніть пропуск, щоб змінити статус task з певним id на true у масиві об'єктів.",
+      "initial_code": "function completeTask(id) {\n  setTasks(tasks => tasks.map(t => t.id === id ? { ...t, done: /* пропуск */ } : t));\n}",
+      "task_type": "fill_gap",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "true",
+          "is_primary": true,
+          "hint": "Просто підставте true замість пропуску."
+        }
+      ]
+    },
+    {
+      "title": "Виправ баг: некоректна робота з asynchrony setState",
+      "description": "Після кліку значення може бути некоректним при швидких кліках. Виправ використання setCount.",
+      "initial_code": "function IncButton() {\n  const [count, setCount] = React.useState(0);\n  return <button onClick={() => setCount(count + 1)}>{count}</button>;\n}",
+      "task_type": "fix_bug",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "function IncButton() {\n  const [count, setCount] = React.useState(0);\n  return <button onClick={() => setCount(c => c + 1)}>{count}</button>;\n}",
+          "is_primary": true,
+          "hint": "Використовуйте функціональну форму setState для оновлення від попереднього значення."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: зміна класу по стану",
+      "description": "Встав пропуск для зміни класу елемента залежно від стану isActive.",
+      "initial_code": "<div className={/* пропуск */}>Button</div>",
+      "task_type": "fill_gap",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "isActive ? 'active' : 'inactive'",
+          "is_primary": true,
+          "hint": "Використайте тернарний оператор."
+        }
+      ]
+    },
+    {
+      "title": "Дописати код: рендеринг масиву об'єктів",
+      "description": "Додайте map, щоб вивести список item.name з масиву items.",
+      "initial_code": "function ItemList({ items }) {\n  // ...\n  return <ul>{/* ... */}</ul>;\n}",
+      "task_type": "complete",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "function ItemList({ items }) {\n  return <ul>{items.map(item => <li key={item.id}>{item.name}</li>)}</ul>;\n}",
+          "is_primary": true,
+          "hint": "Використовуйте map для рендеру масиву."
+        }
+      ]
+    },
+    {
+      "title": "Дописати код: інверсія чекбокса",
+      "description": "Дописати логіку чекбокса, щоб при кліку його значення змінювалось на протилежне.",
+      "initial_code": "function ToggleCheckbox() {\n  const [checked, setChecked] = React.useState(false);\n  return <input type=\"checkbox\" checked={checked} onChange={/* ... */} />;\n}",
+      "task_type": "complete",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "onChange={() => setChecked(c => !c)}",
+          "is_primary": true,
+          "hint": "Змінюйте стан через setChecked."
+        }
+      ]
+    },
+    {
+      "title": "Виправ баг: некоректний key у списку",
+      "description": "У масиві об'єктів з полями id, key прописаний як індекс. Виправ це.",
+      "initial_code": "function List({ items }) {\n  return <ul>{items.map((item, i) => <li key={i}>{item.name}</li>)}</ul>;\n}",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "function List({ items }) {\n  return <ul>{items.map(item => <li key={item.id}>{item.name}</li>)}</ul>;\n}",
+          "is_primary": true,
+          "hint": "Краще використовувати id для key, якщо він унікальний."
+        }
+      ]
+    },
+    {
+      "title": "Дописати код: інкремент та декремент в одному компоненті",
+      "description": "Додайте дві кнопки '+' і '-', які змінюють число в React-компоненті.",
+      "initial_code": "function IncDec() {\n  const [num, setNum] = React.useState(0);\n  // ...\n}",
+      "task_type": "complete",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "function IncDec() {\n  const [num, setNum] = React.useState(0);\n  return (\n    <>\n      <button onClick={() => setNum(n => n - 1)}>-</button>\n      <span>{num}</span>\n      <button onClick={() => setNum(n => n + 1)}>+</button>\n    </>\n  );\n}",
+          "is_primary": true,
+          "hint": "Оновлюйте стан через setNum."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: callback з доступом до актуального стану",
+      "description": "Вставте пропуск у setState, щоб збільшити state на 2, гарантовано базуючись на поточному значенні.",
+      "initial_code": "setCount(/* пропуск */);",
+      "task_type": "fill_gap",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "setCount(prev => prev + 2);",
+          "is_primary": true,
+          "hint": "Функціональна форма setState забезпечує актуальне значення."
+        }
+      ]
+    }
+  ]
+}

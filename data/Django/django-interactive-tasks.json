@@ -1,0 +1,455 @@
+{
+  "test_title": "Django",
+  "tasks": [
+    {
+      "title": "Заповнити пропуск: імпорт render у view",
+      "description": "Додайте імпорт, щоб функція view могла використовувати render.",
+      "initial_code": "from django.http import HttpResponse\n\n/* пропуск */\n\ndef index(request):\n    return render(request, 'index.html')",
+      "task_type": "fill_gap",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "from django.http import HttpResponse\nfrom django.shortcuts import render\n\ndef index(request):\n    return render(request, 'index.html')",
+          "is_primary": true,
+          "hint": "render знаходиться в django.shortcuts."
+        },
+        {
+          "code": "from django.http import HttpResponse\nimport django.shortcuts.render\n\ndef index(request):\n    return render(request, 'index.html')",
+          "hint": "Можна імпортувати функцію безпосередньо з пакету."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: __str__ у моделі",
+      "description": "Поверніть людський опис об’єкта для відображення в адмінці та shell.",
+      "initial_code": "class Book(models.Model):\n    title = models.CharField(max_length=100)\n\n    def __str__(self):\n        return /* пропуск */",
+      "task_type": "fill_gap",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "class Book(models.Model):\n    title = models.CharField(max_length=100)\n\n    def __str__(self):\n        return self.title",
+          "is_primary": true,
+          "hint": "Повернення назви робить опис зрозумілим."
+        },
+        {
+          "code": "class Book(models.Model):\n    title = models.CharField(max_length=100)\n\n    def __str__(self):\n        return f\"Book: {self.id}\"",
+          "hint": "Можна включити id для унікальності."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: реєстрація моделі в admin",
+      "description": "Модель Book не відображається в адмінці, бо не зареєстрована.",
+      "initial_code": "from django.contrib import admin\nfrom .models import Book\n\n# забули реєстрацію",
+      "task_type": "fix_bug",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "from django.contrib import admin\nfrom .models import Book\n\nadmin.site.register(Book)",
+          "is_primary": true,
+          "hint": "admin.site.register додає модель в адмінку."
+        },
+        {
+          "code": "from django.contrib import admin\nfrom .models import Book\n\n@admin.register(Book)\nclass BookAdmin(admin.ModelAdmin):\n    pass",
+          "hint": "Декоратор @admin.register — альтернативний синтаксис."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: URLConf для додатку",
+      "description": "Оголосіть список urlpatterns у файлі urls.py.",
+      "initial_code": "from django.urls import path\nfrom . import views\n\n/* вставити тут */",
+      "task_type": "complete",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "urlpatterns = [\n    path('', views.index, name='index'),\n]",
+          "is_primary": true,
+          "hint": "urlpatterns має бути списком маршрутів."
+        },
+        {
+          "code": "urlpatterns = (\n    path('', views.index),\n)",
+          "hint": "tuple також працює, але частіше використовують list."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: створення міграцій",
+      "description": "Команда для створення файлів міграції після зміни моделей.",
+      "initial_code": "# термінал\n$ python manage.py /* пропуск */",
+      "task_type": "fill_gap",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "# термінал\n$ python manage.py makemigrations",
+          "is_primary": true,
+          "hint": "makemigrations генерує файли міграції."
+        },
+        {
+          "code": "# термінал\n$ python manage.py migrate --plan",
+          "hint": "migrate з --plan показує, що буде виконано."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: невірний ForeignKey",
+      "description": "У моделі Article зов’язок з користувачем не враховує можливу кастомну модель User.",
+      "initial_code": "class Article(models.Model):\n    author = models.ForeignKey(User, on_delete=models.CASCADE)",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "from django.conf import settings\nclass Article(models.Model):\n    author = models.ForeignKey(\n        settings.AUTH_USER_MODEL,\n        on_delete=models.CASCADE\n    )",
+          "is_primary": true,
+          "hint": "AUTH_USER_MODEL дозволяє змінювати модель користувача."
+        },
+        {
+          "code": "from django.contrib.auth import get_user_model\nUser = get_user_model()\nclass Article(models.Model):\n    author = models.ForeignKey(User, on_delete=models.CASCADE)",
+          "hint": "get_user_model динамічно повертає активну модель користувача."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: annotate для підрахунку книг",
+      "description": "Додайте метод QuerySet, щоб додати до кожного автора кількість його книг.",
+      "initial_code": "from django.db.models import Count\n\nauthors = Author.objects /* вставити тут */()",
+      "task_type": "complete",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": "annotate(book_count=Count('book'))",
+          "is_primary": true,
+          "hint": "Count('book') підраховує пов’язані об’єкти Book."
+        },
+        {
+          "code": "annotate(num_books=Count('book__id'))",
+          "hint": "Можна рахувати за полем book__id для того ж результату."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: вивід змінної в шаблоні",
+      "description": "Вставте правильний синтаксис для відображення заголовка книги.",
+      "initial_code": "<h1>{{ /* пропуск */ }}</h1>",
+      "task_type": "fill_gap",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "<h1>{{ book.title }}</h1>",
+          "is_primary": true,
+          "hint": "Доступ до поля через object.field."
+        },
+        {
+          "code": "<h1>{{ object.title }}</h1>",
+          "hint": "CBV передає об’єкт як object."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: відсутній CSRF-токен",
+      "description": "POST-форма не зберігається, бо бракує захисту від CSRF.",
+      "initial_code": "<form method=\"post\" action=\"\">  \n  {{ form.as_p }}  \n  <button>Submit</button>\n</form>",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "<form method=\"post\" action=\"\">  \n  {% csrf_token %}  \n  {{ form.as_p }}  \n  <button>Submit</button>\n</form>",
+          "is_primary": true,
+          "hint": "csrf_token вставляє захисний токен у шаблоні."
+        },
+        {
+          "code": "<form method=\"post\" action=\"\">  \n  {% load csrf %}  \n  {% csrf_token %}  \n  {{ form.as_p }}  \n  <button>Submit</button>\n</form>",
+          "hint": "load csrf необов’язковий у новіших версіях Django."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: простий template tag",
+      "description": "Визначте простий тег current_time, що повертає поточний час за форматом.",
+      "initial_code": "from django import template\nregister = template.Library()\n\n@register.simple_tag\ndef current_time(format_string):\n    import datetime\n    /* вставити тут */",
+      "task_type": "complete",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": "return datetime.datetime.now().strftime(format_string)",
+          "is_primary": true,
+          "hint": "strftime дозволяє форматувати дату/час."
+        },
+        {
+          "code": "return datetime.datetime.today().strftime(format_string)",
+          "hint": "today() повертає теж поточну дату/час."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: STATIC_URL у settings",
+      "description": "Вкажіть налаштування URL для статичних файлів.",
+      "initial_code": "# settings.py\n/* пропуск */",
+      "task_type": "fill_gap",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "# settings.py\nSTATIC_URL = '/static/'",
+          "is_primary": true,
+          "hint": "STATIC_URL вказує браузеру шлях до static."
+        },
+        {
+          "code": "# settings.py\nSTATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]",
+          "hint": "STATICFILES_DIRS додає додаткові директорії."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: неправильна вкладеність класу Meta",
+      "description": "class Meta має бути всередині моделі, а не на тому ж рівні.",
+      "initial_code": "class MyModel(models.Model):\n    name = models.CharField(max_length=50)\n\nclass Meta:\n    ordering = ['name']",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "class MyModel(models.Model):\n    name = models.CharField(max_length=50)\n\n    class Meta:\n        ordering = ['name']",
+          "is_primary": true,
+          "hint": "Meta всередині MyModel."
+        },
+        {
+          "code": "class Meta(models.Options):\n    ordering = ['name']",
+          "hint": "Ні, Django не підтримує таку роль Meta."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: кастомна валідація форми",
+      "description": "Викиньте ValidationError, якщо вік менший за 18 років.",
+      "initial_code": "from django import forms\n\nclass AgeForm(forms.Form):\n    age = forms.IntegerField()\n\n    def clean_age(self):\n        age = self.cleaned_data['age']\n        /* вставити тут */\n        return age",
+      "task_type": "complete",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": "if age < 18:\n            raise forms.ValidationError('Must be at least 18')",
+          "is_primary": true,
+          "hint": "ValidationError викидається у методі clean_."
+        },
+        {
+          "code": "if age <= 0:\n            raise forms.ValidationError('Invalid age')",
+          "hint": "Можна додати додаткову перевірку на невід’ємність."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: include в основному urls.py",
+      "description": "Підключіть маршрути додатку blog у головний urls.py.",
+      "initial_code": "from django.urls import path\nfrom django.urls import /* пропуск */\n\nurlpatterns = [\n    path('blog/', /* пропуск */),\n]",
+      "task_type": "fill_gap",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "from django.urls import path\nfrom django.urls import include\n\nurlpatterns = [\n    path('blog/', include('blog.urls')),\n]",
+          "is_primary": true,
+          "hint": "include імпортується з django.urls."
+        },
+        {
+          "code": "from django.urls import path\nfrom django.urls import re_path\n\nurlpatterns = [\n    re_path(r'^blog/', include('blog.urls')),\n]",
+          "hint": "re_path дозволяє використовувати регулярні вирази."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: контекст без даних",
+      "description": "render викликається без передачі контексту, тому шаблон нічого не бачить.",
+      "initial_code": "def index(request):\n    items = Item.objects.all()\n    return render(request, 'index.html')",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "def index(request):\n    items = Item.objects.all()\n    return render(request, 'index.html', {'items': items})",
+          "is_primary": true,
+          "hint": "Третім аргументом передається контекст."
+        },
+        {
+          "code": "def index(request):\n    items = Item.objects.all()\n    context = {'items': items}\n    return render(request, 'index.html', context)",
+          "hint": "Можна зберегти контекст в змінній."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: override save() у моделі",
+      "description": "Додайте slugify для автоматичного заповнення поля slug перед збереженням.",
+      "initial_code": "from django.utils.text import slugify\n\nclass Article(models.Model):\n    title = models.CharField(max_length=200)\n    slug = models.SlugField(blank=True)\n\n    def save(self, *args, **kwargs):\n        /* вставити тут */\n        super().save(*args, **kwargs)",
+      "task_type": "complete",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": "if not self.slug:\n            self.slug = slugify(self.title)",
+          "is_primary": true,
+          "hint": "Перевіряємо, що slug ще не встановлений."
+        },
+        {
+          "code": "self.slug = slugify(self.title[:50])",
+          "hint": "Можна обрізати title до певної довжини."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: MEDIA_URL у settings",
+      "description": "Налаштуйте базовий URL для відображення файлів користувача.",
+      "initial_code": "# settings.py\n/* пропуск */",
+      "task_type": "fill_gap",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "# settings.py\nMEDIA_URL = '/media/'",
+          "is_primary": true,
+          "hint": "MEDIA_URL використовується для файлів users."
+        },
+        {
+          "code": "# settings.py\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')",
+          "hint": "MEDIA_ROOT вказує файлову систему."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: невірний шлях до шаблонів",
+      "description": "Django не знаходить шаблони, бо шлях заданий неправильно.",
+      "initial_code": "TEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': ['templates'],\n    },\n]",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "TEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [os.path.join(BASE_DIR, 'templates')],\n    },\n]",
+          "is_primary": true,
+          "hint": "BASE_DIR додає абсолютний шлях."
+        },
+        {
+          "code": "TEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'APP_DIRS': True,\n        'DIRS': ['templates'],\n    },\n]",
+          "hint": "APP_DIRS=True дозволяє шукати templates у додатках."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: values_list для одного поля",
+      "description": "Отримайте список з усіх email користувачів реченням flat=True.",
+      "initial_code": "emails = User.objects.values_list(/* вставити тут */)",
+      "task_type": "complete",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "emails = User.objects.values_list('email', flat=True)",
+          "is_primary": true,
+          "hint": "flat=True повертає плоский список."
+        },
+        {
+          "code": "emails = User.objects.values_list('id', 'email')",
+          "hint": "Без flat=True повертається список кортежів."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: context_processors у TEMPLATES",
+      "description": "Додайте ключ для шаблонних контекст-процесорів.",
+      "initial_code": "TEMPLATES[0]['OPTIONS'][/* пропуск */] = [\n    'django.template.context_processors.debug',\n]",
+      "task_type": "fill_gap",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": "TEMPLATES[0]['OPTIONS']['context_processors'] = [\n    'django.template.context_processors.debug',\n]",
+          "is_primary": true,
+          "hint": "KEY 'context_processors' містить список процесорів."
+        },
+        {
+          "code": "TEMPLATES[0]['OPTIONS']['builtins'] = [\n    # ...\n]",
+          "hint": "builtins використовується для реєстрації custom tags."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: відсутній return у view",
+      "description": "Функція view нічого не повертає, тому клієнт отримує None.",
+      "initial_code": "def hello(request):\n    HttpResponse('Hello')",
+      "task_type": "fix_bug",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "def hello(request):\n    return HttpResponse('Hello')",
+          "is_primary": true,
+          "hint": "Потрібно повертати об’єкт HttpResponse."
+        },
+        {
+          "code": "def hello(request):\n    response = HttpResponse('Hello')\n    return response",
+          "hint": "Можна зберегти в змінну перед return."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: management command Hello",
+      "description": "Виведіть у консоль «Hello» в методі handle кастомної команди.",
+      "initial_code": "from django.core.management.base import BaseCommand\n\nclass Command(BaseCommand):\n    help = 'Say hello'\n\n    def handle(self, *args, **options):\n        /* вставити тут */",
+      "task_type": "complete",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "self.stdout.write('Hello')",
+          "is_primary": true,
+          "hint": "self.stdout.write — рекомендований спосіб виводу."
+        },
+        {
+          "code": "print('Hello')",
+          "hint": "print теж працює, але менш інтегровано."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: імпорт login_required",
+      "description": "Додайте необхідний імпорт, щоб захистити view за допомогою декоратора login_required.",
+      "initial_code": "from django.shortcuts import render\n\n/* пропуск */\n@login_required\ndef dashboard(request):\n    return render(request, 'dashboard.html')",
+      "task_type": "fill_gap",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "from django.shortcuts import render\nfrom django.contrib.auth.decorators import login_required\n\n@login_required\ndef dashboard(request):\n    return render(request, 'dashboard.html')",
+          "is_primary": true,
+          "hint": "login_required імпортується з django.contrib.auth.decorators."
+        },
+        {
+          "code": "from django.shortcuts import render\nfrom django.contrib.auth.decorators import login_required as lr\n\n@lr\ndef dashboard(request):\n    return render(request, 'dashboard.html')",
+          "hint": "Можна скоротити імпорт через alias."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: неправильне використання get_context_data",
+      "description": "Метод get_context_data у ListView не викликає батьківський метод, тому переданий context не містить стандартних даних.",
+      "initial_code": "from django.views.generic import ListView\nfrom django.utils import timezone\n\nclass ProductListView(ListView):\n    model = Product\n\n    def get_context_data(self, **kwargs):\n        context = {}\n        context['now'] = timezone.now()\n        return context",
+      "task_type": "fix_bug",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": "from django.views.generic import ListView\nfrom django.utils import timezone\n\nclass ProductListView(ListView):\n    model = Product\n\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        context['now'] = timezone.now()\n        return context",
+          "is_primary": true,
+          "hint": "Необхідно викликати super().get_context_data(**kwargs)."
+        },
+        {
+          "code": "from django.views.generic import ListView\nfrom django.utils import timezone\n\nclass ProductListView(ListView):\n    model = Product\n\n    def get_context_data(self, **kwargs):\n        context = super(ProductListView, self).get_context_data(**kwargs)\n        context.update({ 'now': timezone.now() })\n        return context",
+          "hint": "Альтернативний виклик super із вказанням класу та self."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: видалення файлу при видаленні екземпляра",
+      "description": "Додайте код у сигнал post_delete для видалення файлу поля file після видалення об’єкта MyModel.",
+      "initial_code": "from django.db.models.signals import post_delete\nfrom django.dispatch import receiver\n\n@receiver(post_delete, sender=MyModel)\ndef delete_file(sender, instance, **kwargs):\n    /* вставити тут */",
+      "task_type": "complete",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": "if instance.file:\n        instance.file.delete(False)",
+          "is_primary": true,
+          "hint": "instance.file.delete(False) видаляє файл без логування в базі."
+        },
+        {
+          "code": "import os\nif instance.file and os.path.isfile(instance.file.path):\n        os.remove(instance.file.path)",
+          "hint": "os.remove безпосередньо видаляє файл із файлової системи."
+        }
+      ]
+    }
+  ]
+}

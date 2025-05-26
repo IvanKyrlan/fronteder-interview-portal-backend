@@ -1,0 +1,455 @@
+{
+  "test_title": "HTML",
+  "tasks": [
+    {
+      "title": "Заповнити пропуск: оголошення документа",
+      "description": "Додайте перший рядок, щоб браузер правильно інтерпретував документ як HTML5.",
+      "initial_code": "/* пропуск */\n<html>\n  <head></head>\n  <body></body>\n</html>",
+      "task_type": "fill_gap",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "<!DOCTYPE html>\n<html>\n  <head></head>\n  <body></body>\n</html>",
+          "is_primary": true,
+          "hint": "<!DOCTYPE html> повідомляє браузеру версію HTML."
+        },
+        {
+          "code": "<!doctype html>\n<html>\n  <head></head>\n  <body></body>\n</html>",
+          "hint": "Можна з малої літери, це теж працює у сучасних браузерах."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: атрибут мови сторінки",
+      "description": "Вкажіть атрибут, щоб задати основну мову HTML-документа.",
+      "initial_code": "<html /* пропуск */>\n  <head></head>\n  <body></body>\n</html>",
+      "task_type": "fill_gap",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "<html lang=\"en\">\n  <head></head>\n  <body></body>\n</html>",
+          "is_primary": true,
+          "hint": "lang=\"en\" — загальноприйнятий атрибут для англійської."
+        },
+        {
+          "code": "<html xml:lang=\"en\">\n  <head></head>\n  <body></body>\n</html>",
+          "hint": "xml:lang використовується у XHTML, може бути підтримкою спадкоємності."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: відсутність alt у зображення",
+      "description": "У наведеному коді img-підтримує відображення логотипу, але не має текстового опису для читачів із екранними читалками. Додайте текстовий опис 'Logo'",
+      "initial_code": "<img src=\"logo.png\">",
+      "task_type": "fix_bug",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "<img src=\"logo.png\" alt=\"Logo\">",
+          "is_primary": true,
+          "hint": "Атрибут alt обов’язковий для доступності."
+        },
+        {
+          "code": "<img src=\"logo.png\" alt=\"\">",
+          "hint": "Пустий alt вказує, що зображення є декоративним."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: підключення CSS-стилю",
+      "description": "Додайте тег у head, щоб підключити зовнішній файл стилів styles.css.",
+      "initial_code": "<head>\n  <!-- вставте код тут -->\n</head>",
+      "task_type": "complete",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "<head>\n  <link rel=\"stylesheet\" href=\"styles.css\">\n</head>",
+          "is_primary": true,
+          "hint": "rel=\"stylesheet\" повідомляє, що це CSS."
+        },
+        {
+          "code": "<head>\n  <style>@import 'styles.css';</style>\n</head>",
+          "hint": "@import — альтернативний спосіб підключення, але може бути повільнішим."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: мета viewport для адаптивності",
+      "description": "Вставте вміст, щоб сторінка правильно масштабувалася на мобільних пристроях.",
+      "initial_code": "<meta name=\"viewport\" content=\"/* пропуск */\">",
+      "task_type": "fill_gap",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+          "is_primary": true,
+          "hint": "Цей вміст забезпечує адаптивний масштаб."
+        },
+        {
+          "code": "<meta name=\"viewport\" content=\"initial-scale=1, width=device-width, maximum-scale=1\">",
+          "hint": "Є альтернативні параметри для обмеження масштабування."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: нев’язаний label та input",
+      "description": "Label і input повинні бути пов’язані через атрибут for/id.",
+      "initial_code": "<label>Name</label>\n<input id=\"name\" type=\"text\">",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "<label for=\"name\">Name</label>\n<input id=\"name\" type=\"text\">",
+          "is_primary": true,
+          "hint": "for має співпадати з id пов’язаного елемента."
+        },
+        {
+          "code": "<label>Name<input type=\"text\" name=\"name\"></label>",
+          "hint": "Обгортання input тегом label автоматично встановлює зв’язок."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: семантична структура статті",
+      "description": "Додайте відповідні теги для header, основного вмісту та footer.",
+      "initial_code": "<div class=\"article\">\n  <!-- header тут -->\n  <!-- main тут -->\n  <!-- footer тут -->\n</div>",
+      "task_type": "complete",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "<div class=\"article\">\n  <header>Заголовок статті</header>\n  <main>Текст статті</main>\n  <footer>Автор і дата</footer>\n</div>",
+          "is_primary": true,
+          "hint": "header, main і footer — основні семантичні блоки."
+        },
+        {
+          "code": "<div class=\"article\">\n  <section role=\"banner\">Заголовок статті</section>\n  <section role=\"main\">Текст статті</section>\n  <section role=\"contentinfo\">Автор і дата</section>\n</div>",
+          "hint": "ARIA roles можна використовувати як альтернативу семантичним тегам."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: кодування символів",
+      "description": "Вкажіть атрибут, щоб задати кодування документа в UTF-8.",
+      "initial_code": "<meta /* пропуск */>",
+      "task_type": "fill_gap",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "<meta charset=\"UTF-8\">",
+          "is_primary": true,
+          "hint": "charset=\"UTF-8\" — найпоширеніше кодування."
+        },
+        {
+          "code": "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">",
+          "hint": "Старіший спосіб через http-equiv, але все ще підтримується."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: відео-контролери",
+      "description": "Додайте атрибут, щоб у відео були елементи керування (play/pause).",
+      "initial_code": "<video src=\"video.mp4\" /* пропуск */></video>",
+      "task_type": "fill_gap",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "<video src=\"video.mp4\" controls></video>",
+          "is_primary": true,
+          "hint": "controls додає стандартні елементи керування."
+        },
+        {
+          "code": "<video src=\"video.mp4\" controls preload=\"metadata\"></video>",
+          "hint": "preload може бути додано для попереднього завантаження метаданих."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: відсутній тег closing li",
+      "description": "У цьому списку забуто закрити один з елементів li.",
+      "initial_code": "<ul>\n  <li>Item 1\n  <li>Item 2</li>\n</ul>",
+      "task_type": "fix_bug",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "<ul>\n  <li>Item 1</li>\n  <li>Item 2</li>\n</ul>",
+          "is_primary": true,
+          "hint": "Кожен <li> має мати закриваючий </li>."
+        },
+        {
+          "code": "<ul>\n  <li>Item 1</li>\n  <li>Item 2</li>\n  <!-- додатковий коментар -->\n</ul>",
+          "hint": "Можна додати коментар, але закриття li обов’язкове."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: тег picture з fallback",
+      "description": "Додайте блок <source> у тег picture для webp зображення та забезпечте резервне png.",
+      "initial_code": "<picture>\n  <!-- вставити source тут -->\n  <img src=\"image.png\" alt=\"Example\">\n</picture>",
+      "task_type": "complete",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": "<picture>\n  <source srcset=\"image.webp\" type=\"image/webp\">\n  <img src=\"image.png\" alt=\"Example\">\n</picture>",
+          "is_primary": true,
+          "hint": "source обробляє сучасні формати перед img."
+        },
+        {
+          "code": "<picture>\n  <source srcset=\"image.avif\" type=\"image/avif\">\n  <img src=\"image.png\" alt=\"Example\">\n</picture>",
+          "hint": "AVIF — ще новіший формат із кращою компресією."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: обов’язковий input",
+      "description": "Зробіть текстове поле обов’язковим для заповнення.",
+      "initial_code": "<input type=\"text\" /* пропуск */>",
+      "task_type": "fill_gap",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "<input type=\"text\" required>",
+          "is_primary": true,
+          "hint": "required не потребує значення — сам по собі атрибут."
+        },
+        {
+          "code": "<input type=\"text\" aria-required=\"true\">",
+          "hint": "ARIA-атрибут для позначення обов’язковості."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: дублювання ID",
+      "description": "У документі два елементи мають однаковий id — це заборонено.",
+      "initial_code": "<div id=\"header\"></div>\n<section id=\"header\"></section>",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "<div id=\"header\"></div>\n<section id=\"main-header\"></section>",
+          "is_primary": true,
+          "hint": "Кожен id має бути унікальним."
+        },
+        {
+          "code": "<div id=\"header\"></div>\n<section id=\"header-section\"></section>",
+          "hint": "Можна додати суфікс для унікальності."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: елемент audio з fallback",
+      "description": "Додайте елемент audio з контролерами та резервний текст на випадок, якщо браузер не підтримує тег.",
+      "initial_code": "<audio src=\"sound.mp3\">\n  <!-- вставити текст тут -->\n</audio>",
+      "task_type": "complete",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "<audio src=\"sound.mp3\" controls>Your browser does not support the audio element.</audio>",
+          "is_primary": true,
+          "hint": "controls додає елементи керування, а текст між тегами — фолбек."
+        },
+        {
+          "code": "<audio src=\"sound.mp3\" controls>\n  <source src=\"sound.ogg\" type=\"audio/ogg\">\n  Your browser does not support the audio element.\n</audio>",
+          "hint": "Додатковий формат .ogg для кращої сумісності."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: дата-атрибут",
+      "description": "Додайте довільний дата-атрибут для зберігання user-id.",
+      "initial_code": "<div /* пропуск */>User</div>",
+      "task_type": "fill_gap",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "<div data-user-id=\"123\">User</div>",
+          "is_primary": true,
+          "hint": "data-* атрибути корисні для зберігання метаданих."
+        },
+        {
+          "code": "<div data-id=\"123\">User</div>",
+          "hint": "Простіше скорочення, але менш специфічне."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: бракує caption у таблиці",
+      "description": "Для кращої доступності таблиця мусить мати caption.",
+      "initial_code": "<table>\n  <tr><th>Name</th></tr>\n  <tr><td>Alice</td></tr>\n</table>",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "<table>\n  <caption>Users List</caption>\n  <tr><th>Name</th></tr>\n  <tr><td>Alice</td></tr>\n</table>",
+          "is_primary": true,
+          "hint": "<caption> розповідає, про що таблиця."
+        },
+        {
+          "code": "<table aria-labelledby=\"tbl-caption\">\n  <caption id=\"tbl-caption\">Users List</caption>\n  <tr><th>Name</th></tr>\n  <tr><td>Alice</td></tr>\n</table>",
+          "hint": "ARIA-labelledby також покращує доступність."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: чекбокс з клікабельною міткою",
+      "description": "Забезпечте, щоб клік по тексту активував чекбокс.",
+      "initial_code": "<input type=\"checkbox\" id=\"opt\">\n<label>Option</label>",
+      "task_type": "complete",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "<input type=\"checkbox\" id=\"opt\">\n<label for=\"opt\">Option</label>",
+          "is_primary": true,
+          "hint": "for пов’язує мітку та інпут."
+        },
+        {
+          "code": "<label>Option<input type=\"checkbox\"></label>",
+          "hint": "Обгортання інпут у label теж працює."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: aria-hidden для декоративного елемента",
+      "description": "Позначте спан з іконкою як декоративний для екранних читачів.",
+      "initial_code": "<span /* пропуск */>★</span>",
+      "task_type": "fill_gap",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": "<span aria-hidden=\"true\">★</span>",
+          "is_primary": true,
+          "hint": "aria-hidden приховує вміст від AT."
+        },
+        {
+          "code": "<span role=\"presentation\">★</span>",
+          "hint": "role=\"presentation\" також позначає декоративність."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: відсутній defer у script",
+      "description": "Скрипт у head блокує завантаження сторінки – додайте атрибут для асинхронного завантаження після парсингу.",
+      "initial_code": "<head>\n  <script src=\"app.js\"></script>\n</head>",
+      "task_type": "fix_bug",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": "<head>\n  <script src=\"app.js\" defer></script>\n</head>",
+          "is_primary": true,
+          "hint": "defer чекає на парсинг DOM."
+        },
+        {
+          "code": "<head>\n  <script src=\"app.js\" async></script>\n</head>",
+          "hint": "async завантажує скрипт асинхронно, але виконує відразу після завантаження."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: HTML-коментар",
+      "description": "Додайте коментар у коді, який не відображається в браузері.",
+      "initial_code": "/* вставте коментар тут */",
+      "task_type": "complete",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "<!-- Це коментар -->",
+          "is_primary": true,
+          "hint": "HTML-коментарі — <!-- ... -->."
+        },
+        {
+          "code": "<!-- TODO: додати секцію контактів -->",
+          "hint": "Коментарі можуть містити TODO для планування."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: атрибут dir для RTL-мови",
+      "description": "Для арабської мови вкажіть напрямок тексту справа наліво.",
+      "initial_code": "<html lang=\"ar\" /* пропуск */>\n</html>",
+      "task_type": "fill_gap",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "<html lang=\"ar\" dir=\"rtl\">\n</html>",
+          "is_primary": true,
+          "hint": "dir визначає напрям тексту."
+        },
+        {
+          "code": "<html lang=\"ar\" style=\"direction: rtl;\">\n</html>",
+          "hint": "CSS-дірекшн також може визначати напрям."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: email-посилання без mailto",
+      "description": "Посилання веде на веб-URL, але має відкривати поштовий клієнт.",
+      "initial_code": "<a href=\"user@example.com\">Email us</a>",
+      "task_type": "fix_bug",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "<a href=\"mailto:user@example.com\">Email us</a>",
+          "is_primary": true,
+          "hint": "mailto: відкриває поштовий клієнт."
+        },
+        {
+          "code": "<a href=\"mailto:user@example.com?subject=Hello\">Email us</a>",
+          "hint": "Можна додати subject у посилання."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: впорядкований список",
+      "description": "Створіть список з трьома кроками за допомогою відповідного тегу.",
+      "initial_code": "<!-- вставте код тут -->",
+      "task_type": "complete",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "<ol>\n  <li>Step 1</li>\n  <li>Step 2</li>\n  <li>Step 3</li>\n</ol>",
+          "is_primary": true,
+          "hint": "<ol> для порядкових списків."
+        },
+        {
+          "code": "<ul style=\"list-style-type: decimal;\">\n  <li>Step 1</li>\n  <li>Step 2</li>\n  <li>Step 3</li>\n</ul>",
+          "hint": "decimal-list у ul також дає нумерацію."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: пустий alt для декоративного зображення",
+      "description": "Позначте SVG-ілюстрацію як декоративну, щоб екранні читачі її ігнорували.",
+      "initial_code": "<img src=\"decor.svg\" /* пропуск */>",
+      "task_type": "fill_gap",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "<img src=\"decor.svg\" alt=\"\">",
+          "is_primary": true,
+          "hint": "Пустий alt означає, що зображення декоративне."
+        },
+        {
+          "code": "<img src=\"decor.svg\" role=\"presentation\" alt=\"\">",
+          "hint": "role=\"presentation\" підсилює семантику декоративності."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: об’єднати заголовок таблиці",
+      "description": "Вставте атрибут, щоб заголовок Monthly Report охоплював усі три колонки таблиці.",
+      "initial_code": "<table>\n  <tr>\n    <th /* пропуск */>Monthly Report</th>\n  </tr>\n  <tr>\n    <td>Jan</td><td>Feb</td><td>Mar</td>\n  </tr>\n</table>",
+      "task_type": "fill_gap",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "<table>\n  <tr>\n    <th colspan=\"3\">Monthly Report</th>\n  </tr>\n  <tr>\n    <td>Jan</td><td>Feb</td><td>Mar</td>\n  </tr>\n</table>",
+          "is_primary": true,
+          "hint": "colspan визначає кількість колонок, які охоплює клітинка."
+        },
+        {
+          "code": "<table>\n  <tr>\n    <th colspan=3>Monthly Report</th>\n  </tr>\n  <tr>\n    <td>Jan</td><td>Feb</td><td>Mar</td>\n  </tr>\n</table>",
+          "hint": "У HTML5 атрибутні значення можна вказувати без лапок."
+        }
+      ]
+    }
+  ]
+}

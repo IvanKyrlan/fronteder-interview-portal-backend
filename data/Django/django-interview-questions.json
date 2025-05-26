@@ -1,0 +1,947 @@
+[
+  {
+    "question": "Що таке Django middleware?",
+    "answers": [
+      "Механізм для роботи з фронтендом",
+      "Компонент, який обробляє запити та відповіді на проміжному етапі",
+      "База даних для моделей",
+      "Система управління URL-адресами"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Як визначити модель у Django?",
+    "answers": [
+      "Через клас, що наслідує models.Model",
+      "В файлі views.py",
+      "Через функцію create_model()",
+      "У файлі settings.py"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Яка команда створює новий проєкт Django?",
+    "answers": [
+      "django runserver",
+      "django-admin startproject myproject",
+      "python manage.py startapp myproject",
+      "python manage.py makemigrations"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Яке призначення файлу `settings.py`?",
+    "answers": [
+      "Містить HTML шаблони",
+      "Містить налаштування проєкту",
+      "Містить SQL-запити",
+      "Містить view-функції"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Що робить метод `save()` у моделі Django?",
+    "answers": [
+      "Видаляє об'єкт з бази даних",
+      "Оновлює файл шаблону",
+      "Зберігає або оновлює об'єкт у базі даних",
+      "Очищає кеш"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Який HTTP-метод зазвичай використовується для отримання даних?",
+    "answers": ["POST", "DELETE", "GET", "PUT"],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Яке з наведених є Class-Based View у Django?",
+    "answers": [
+      "function view_user(request)",
+      "class UserView(View)",
+      "def user_view():",
+      "userView = view()"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Як підключити модель до Django admin?",
+    "answers": [
+      "Зареєструвати її у settings.py",
+      "Додати у шаблон",
+      "Зареєструвати її в admin.py",
+      "Зберегти її в базі даних"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Який шаблон синтаксису використовується в Django templates?",
+    "answers": ["React JSX", "{{ }} та {% %}", "<% %>", "<< >>"],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Що таке ModelForm у Django?",
+    "answers": [
+      "Клас форми, заснований на моделі",
+      "SQL-запит до бази даних",
+      "Форма HTML",
+      "Клас view"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Як виконати перенаправлення у Django view?",
+    "answers": [
+      "return render('url')",
+      "return redirect('url')",
+      "return HttpResponseRedirect(render)",
+      "return send('url')"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Яка команда запускає локальний сервер у Django?",
+    "answers": [
+      "python manage.py migrate",
+      "python manage.py startserver",
+      "python manage.py runserver",
+      "django-admin run"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Що таке `get_object_or_404` у Django?",
+    "answers": [
+      "Метод шаблону",
+      "View для створення об'єкта",
+      "Функція, яка повертає об'єкт або 404 помилку",
+      "Менеджер моделей"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Що робить команда `makemigrations`?",
+    "answers": [
+      "Застосовує існуючі міграції",
+      "Створює файли міграцій для змін у моделях",
+      "Видаляє всі міграції",
+      "Очищає базу даних"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Яка структура зв'язку «один до багатьох» у Django?",
+    "answers": [
+      "models.OneToOneField",
+      "models.ManyToManyField",
+      "models.ForeignKey",
+      "models.JSONField"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Де зберігаються шаблони HTML у стандартному проєкті Django?",
+    "answers": [
+      "У корені проєкту",
+      "У каталозі static",
+      "У каталозі templates",
+      "У файлі settings.py"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Що таке `context` у функції render?",
+    "answers": [
+      "Зв’язок між моделлю і view",
+      "Словник змінних, які передаються в шаблон",
+      "HTTP заголовки",
+      "Файл зі стилями"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Що робить `reverse()` у Django?",
+    "answers": [
+      "Повертає HTTP-запит",
+      "Оновлює базу даних",
+      "Генерує URL з імені маршруту",
+      "Перевіряє форму"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Як підключити статичні файли у шаблоні Django?",
+    "answers": [
+      "Через {% include %}",
+      "Через {% static %}",
+      "Через <style>",
+      "Через import css"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Що таке signals у Django?",
+    "answers": [
+      "Декоратори для шаблонів",
+      "Форми авторизації",
+      "Система обробки подій між компонентами",
+      "Метод підключення до API"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Яка команда створює новий застосунок у Django?",
+    "answers": [
+      "django-admin startapp appname",
+      "python manage.py createapp appname",
+      "django-admin create appname",
+      "manage.py startproject appname"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Що робить декоратор @csrf_exempt у Django?",
+    "answers": [
+      "Вимикає захист від CSRF для вказаного view",
+      "Створює токен CSRF",
+      "Включає захист від XSS",
+      "Додає JWT до відповіді"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Як передати додаткові атрибути полям форми у Django?",
+    "answers": [
+      "Через Model.save()",
+      "Через параметр `attrs` у widgets",
+      "У settings.py",
+      "Через reverse()"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Який метод view обробляє POST-запит у Class-Based Views?",
+    "answers": ["get()", "post()", "put()", "render()"],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Як реалізувати API у Django?",
+    "answers": [
+      "Через Django REST Framework",
+      "Через шаблони HTML",
+      "Тільки через моделі",
+      "Використовуючи тільки middleware"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Що таке `Meta` клас в моделі Django?",
+    "answers": [
+      "Клас, який описує стилі CSS",
+      "Використовується для вказання додаткових параметрів моделі",
+      "Форма моделі",
+      "Клас шаблону"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Як отримати всі записи з таблиці моделі `Book`?",
+    "answers": [
+      "Book.get_all()",
+      "Book.select_all()",
+      "Book.objects.all()",
+      "Book.all_objects()"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Що таке slug у Django?",
+    "answers": [
+      "Поле для завантаження файлів",
+      "Поле, яке представляє коротке текстове унікальне значення для URL",
+      "Тип дати",
+      "Поле з паролем"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Як обробити 404 помилку вручну у Django?",
+    "answers": [
+      "return error_404()",
+      "raise Http404",
+      "return HttpResponse(404)",
+      "raise PageNotFound"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Який клас DRF використовується для серіалізації моделей?",
+    "answers": [
+      "APIView",
+      "ModelSerializer",
+      "FormSerializer",
+      "QuerySerializer"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Що таке `prefetch_related` у Django ORM?",
+    "answers": [
+      "Оптимізація для виконання raw SQL",
+      "Функція кешування",
+      "Метод для попереднього завантаження пов’язаних об'єктів (many-to-many)",
+      "Метод створення об'єкта"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Що означає параметр `blank=True` у полі моделі?",
+    "answers": [
+      "Поле обов'язкове у базі",
+      "Поле може бути порожнім у формах",
+      "Поле обов'язкове у шаблонах",
+      "Поле приховано"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Як отримати поточного користувача у view?",
+    "answers": [
+      "user = get_user()",
+      "user = request.user",
+      "user = context['user']",
+      "user = User.get_current()"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Який фреймворк використовується в Django для тестування?",
+    "answers": ["pytest", "unittest", "django.test", "nose"],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Яка директива в шаблоні виводить значення змінної?",
+    "answers": ["{% value %}", "{{ value }}", "<< value >>", "[[ value ]]"],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Що робить наступний код у Django view?\n```python\nreturn render(request, 'home.html', {'name': 'Django'})\n```",
+    "answers": [
+      "Повертає JSON відповідь з ключем 'name'",
+      "Переадресовує на шаблон 'home.html' без змін",
+      "Рендерить шаблон 'home.html' з переданим контекстом",
+      "Створює модель з назвою 'Django'"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Як у Django можна створити URL з параметром id?",
+    "answers": [
+      "path('user/<id>/', view)",
+      "path('user/<int:id>/', view)",
+      "url('user/<int:id>/', view)",
+      "route('user/<id>', view)"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Що робить `@action` у Django REST Framework?",
+    "answers": [
+      "Створює ModelSerializer",
+      "Описує маршрут у urlpatterns",
+      "Додає кастомний метод до ViewSet",
+      "Застосовується до моделей"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Що повертає `Model.objects.first()` у Django?",
+    "answers": [
+      "Останній запис у базі",
+      "Перший запис або None",
+      "QuerySet з усіма записами",
+      "Кількість записів у таблиці"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Що виконує команда\n```bash\npython manage.py collectstatic\n```?",
+    "answers": [
+      "Очищає кеш шаблонів",
+      "Збирає всі шаблони в один файл",
+      "Копіює всі статичні файли в одну директорію",
+      "Запускає міграції"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Для чого використовується `Model.objects.filter()`?",
+    "answers": [
+      "Для створення нової моделі",
+      "Для створення шаблону",
+      "Для фільтрації об'єктів у базі",
+      "Для створення сесії"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Що виконує наступний код?\n```python\nBook.objects.get(pk=1)\n```",
+    "answers": [
+      "Створює новий запис з id=1",
+      "Отримує книгу з id=1 або None",
+      "Отримує книгу з id=1 або викликає помилку",
+      "Видаляє книгу з id=1"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Що робить `@api_view(['GET'])` у DRF?",
+    "answers": [
+      "Означає view для HTTP GET-запитів",
+      "Виконує міграції",
+      "Створює об'єкт форми",
+      "Очищає запит"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Як вказати пов’язану модель у Django ManyToMany поле?",
+    "answers": [
+      "models.OneToOneField('ModelName', on_delete=models.CASCADE)",
+      "models.CharField(max_length=255)",
+      "models.ManyToManyField('ModelName')",
+      "models.ForeignKey('ModelName', on_delete=models.SET_NULL)"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Що таке permissions у Django REST Framework?",
+    "answers": [
+      "Функція шаблону",
+      "Правила доступу до API ресурсів",
+      "Сигнал для кешування",
+      "Поле для перевірки email"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Як у Django зробити редирект після обробки POST-запиту?",
+    "answers": [
+      "return redirect('home')",
+      "return render('home.html')",
+      "return HttpResponse('home')",
+      "return send('home')"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Як викликати кастомний метод із класу моделі?",
+    "answers": [
+      "Model.call()",
+      "Model.objects.custom_method()",
+      "instance.custom_method()",
+      "Model.save_custom()"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Що виконує команда `python manage.py test`?",
+    "answers": [
+      "Запускає юніт-тести у проєкті",
+      "Оновлює шаблони",
+      "Очищає статичні файли",
+      "Запускає міграції"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Що повертає метод `serializer.is_valid()` у DRF?",
+    "answers": [
+      "HttpResponse",
+      "True або False",
+      "JSONResponse",
+      "Об'єкт моделі"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Що означає `on_delete=models.CASCADE` у ForeignKey?",
+    "answers": [
+      "Забороняє видалення",
+      "Видаляє пов'язаний об'єкт при видаленні батьківського",
+      "Ігнорує помилку",
+      "Перенаправляє на інший запис"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Як зробити запит до API з frontend до Django REST?",
+    "answers": [
+      "Через шаблони",
+      "Через HTML forms",
+      "Через fetch або axios",
+      "Через middleware"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Що таке `STATICFILES_DIRS` у Django?",
+    "answers": [
+      "Налаштування шаблонів",
+      "Налаштування бази даних",
+      "Шлях до додаткових статичних файлів",
+      "Параметри для юзерів"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Що робить `@receiver(post_save, sender=User)` у signals?",
+    "answers": [
+      "Створює нового користувача",
+      "Викликає функцію після збереження User",
+      "Оновлює middleware",
+      "Створює шаблон"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Який клас DRF ViewSet використовується найчастіше?",
+    "answers": ["APIView", "CreateOnlyView", "ModelViewSet", "RouteSet"],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Як обробити помилку 403 у Django?",
+    "answers": [
+      "raise PermissionDenied",
+      "return HttpResponse(403)",
+      "raise Http404",
+      "redirect('forbidden')"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Що з наведеного є правильним шляхом підключення middleware?",
+    "answers": [
+      "MIDDLEWARE_CLASSES = []",
+      "middleware = []",
+      "MIDDLEWARE = []",
+      "MIDDLE = []"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Як отримати доступ до query параметрів у Django view?",
+    "answers": [
+      "request.post",
+      "request.queryset",
+      "request.GET",
+      "request.data"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Що виконує `serializer.save()` у DRF?",
+    "answers": [
+      "Зберігає запит в лог",
+      "Зберігає шаблон",
+      "Зберігає об'єкт у базі даних",
+      "Зберігає JSON файл"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Що виконує `@permission_classes([IsAuthenticated])` у DRF?",
+    "answers": [
+      "Дозволяє доступ тільки автентифікованим користувачам",
+      "Додає нову модель",
+      "Оновлює шаблони",
+      "Викликає логін"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Що поверне наступний код?\n```python\nBook.objects.filter(author__name='Tom').count()\n```",
+    "answers": [
+      "QuerySet з усіма книгами автора Tom",
+      "Кількість книг автора Tom",
+      "Перший об'єкт книги автора Tom",
+      "None"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Яке поле дозволяє зберігати лише цілі числа у Django?",
+    "answers": [
+      "models.DecimalField",
+      "models.CharField",
+      "models.IntegerField",
+      "models.FloatField"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Як підключити кастомний user model у Django?",
+    "answers": [
+      "AUTH_USER = 'app.CustomUser'",
+      "AUTH_USER_MODEL = 'app.CustomUser'",
+      "USER_MODEL = 'app.CustomUser'",
+      "settings.USER_MODEL"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Як передати список у шаблон Django?",
+    "answers": [
+      "Через render(request, 'template.html', {'mylist': [...]})",
+      "Через settings.py",
+      "Тільки через сесію",
+      "Через signal"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Що робить метод `.exists()` у Django QuerySet?",
+    "answers": [
+      "Повертає True, якщо QuerySet має хоча б один об'єкт",
+      "Повертає перший елемент QuerySet",
+      "Повертає кількість об'єктів",
+      "Повертає None"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Як отримати перші 5 записів у моделі Author?",
+    "answers": [
+      "Author.objects.take(5)",
+      "Author.objects.head(5)",
+      "Author.objects[:5]",
+      "Author.objects.limit(5)"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Що з наведеного НЕ є подією сигналу у Django?",
+    "answers": ["pre_save", "post_delete", "request_started", "model_deleted"],
+    "correctAnswerId": 3
+  },
+  {
+    "question": "Який HTTP-статус повертає Django при успішному створенні об'єкта через DRF?",
+    "answers": ["200 OK", "201 Created", "204 No Content", "302 Found"],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Що поверне `reverse('profile', args=[1])` якщо у urls.py визначено:\n```python\npath('user/<int:id>/', views.profile, name='profile')\n```",
+    "answers": ["/user/profile/1/", "/profile/1/", "/user/1/", "/user?id=1/"],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Що таке select_related у Django ORM?",
+    "answers": [
+      "Оптимізація для many-to-many",
+      "Кешування форм",
+      "Оптимізація для foreign key та one-to-one",
+      "Вибірка лише певних полів"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Що виконає цей шаблон?\n```django\n{% if books %}Є книги{% else %}Книг немає{% endif %}\n```",
+    "answers": [
+      "Виведе 'Книг немає', якщо books порожній",
+      "Виведе 'Є книги', якщо books непорожній",
+      "Виведе помилку шаблону",
+      "Виведе обидва рядки"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Що поверне `User.objects.filter(is_staff=True).values('email')`?",
+    "answers": [
+      "Список email співробітників",
+      "Список User-об'єктів",
+      "Один email",
+      "Список словників з ключем 'email'"
+    ],
+    "correctAnswerId": 3
+  },
+  {
+    "question": "Що таке throttling у Django REST Framework?",
+    "answers": [
+      "Механізм обмеження кількості запитів",
+      "Механізм кешування",
+      "Механізм маршрутизації",
+      "Механізм логування"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Як встановити початкове значення для CharField у моделі?",
+    "answers": ["default_value=''", "initial=''", "default=''", "start=''"],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Що таке `@transaction.atomic` у Django?",
+    "answers": [
+      "Декоратор для кешування даних",
+      "Декоратор для логування",
+      "Декоратор для групування кількох операцій у транзакцію",
+      "Декоратор для створення сесій"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Який метод додасть новий елемент до ManyToMany?",
+    "answers": [".add()", ".append()", ".insert()", ".put()"],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Яке налаштування відповідає за локалізацію (мову) у Django?",
+    "answers": ["LANGUAGE", "LOCALE", "LANGUAGE_CODE", "LOCALE_CODE"],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Що робить клас `Pagination` у DRF?",
+    "answers": [
+      "Відповідає за аутентифікацію",
+      "Відповідає за сторінкову видачу",
+      "Відповідає за фільтрацію",
+      "Відповідає за серіалізацію"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Що повертає цей фрагмент у шаблоні Django?\n```django\n{{ user.get_full_name }}\n```",
+    "answers": [
+      "Повний email користувача",
+      "Поєднане ім'я та прізвище користувача",
+      "Ім'я користувача",
+      "Список груп користувача"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Як створити raw SQL запит у Django?",
+    "answers": [
+      "Model.raw('SQL')",
+      "Model.execute('SQL')",
+      "Model.query('SQL')",
+      "Model.sql('SQL')"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Як обмежити доступ до view тільки для користувачів із певною групою?",
+    "answers": [
+      "Через декоратор @user_passes_test",
+      "Через @login_required",
+      "Через @staff_member_required",
+      "Через @permission_required"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Як отримати лише ті об'єкти, де поле age > 18?",
+    "answers": [
+      "Model.objects.filter(age__gt=18)",
+      "Model.objects.where(age>18)",
+      "Model.objects.exclude(age<=18)",
+      "Model.objects.get(age>18)"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Що таке `csrf_token` у Django шаблоні?",
+    "answers": [
+      "Змінна оточення",
+      "Захист від підробки запитів",
+      "Шаблон класу",
+      "Назва форми"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Що повертає `request.FILES` у Django view?",
+    "answers": [
+      "Список файлів у системі",
+      "Об'єкт, який містить завантажені користувачем файли",
+      "Порожній словник",
+      "Всі картинки проекту"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Що робить цей DRF-серіалізатор?\n```python\nclass UserSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = User\n        fields = ['id', 'username', 'email']\n```",
+    "answers": [
+      "Серіалізує лише username",
+      "Серіалізує всі поля User",
+      "Серіалізує тільки id, username та email User",
+      "Створює форму для User"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Як зробити кастомну валідацію поля у Django Form?",
+    "answers": [
+      "Описати метод clean_<fieldname>() у формі",
+      "Додати метод validate() у views.py",
+      "Використати signals",
+      "Вказати 'validators' у settings.py"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Що таке `@login_required(login_url='/custom-login/')`?",
+    "answers": [
+      "Декоратор, який редіректить на /custom-login/ якщо користувач неавторизований",
+      "Декоратор для логування подій",
+      "Декоратор для кешування",
+      "Декоратор для перевірки CSRF"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Яка різниця між\n```python\nrequest.GET\n```\nта\n```python\nrequest.POST\n```?",
+    "answers": [
+      "GET для файлів, POST для даних",
+      "GET містить дані з GET-запитів, POST — з POST-запитів",
+      "GET і POST завжди порожні",
+      "GET — для сигналів, POST — для сесій"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Що робить цей код?\n```python\nfrom django.core.paginator import Paginator\np = Paginator(Book.objects.all(), 10)\n```",
+    "answers": [
+      "Сортує книги за id",
+      "Повертає 10 випадкових книг",
+      "Розбиває список книг на сторінки по 10 об'єктів",
+      "Фільтрує книги по 10 за раз"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Який із цих варіантів визначає абстрактну модель?",
+    "answers": [
+      "abstract = True у Meta-класі",
+      "is_abstract = True у моделі",
+      "inherit = False у Meta-класі",
+      "abstract = True у полі"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Як у DRF додати підтримку фільтрації для APIListView?",
+    "answers": [
+      "Через filters у settings.py",
+      "Через django-filter та filter_backends",
+      "Через шаблони",
+      "Через middleware"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Що означає параметр `unique=True` у полі моделі?",
+    "answers": [
+      "Поле може містити однакові значення",
+      "Поле є обов'язковим",
+      "Значення поля мають бути унікальними у таблиці",
+      "Поле буде видимим у адмінці"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Як обмежити довжину рядка у CharField?",
+    "answers": ["max_length", "limit", "min_length", "size"],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Що робить цей код у settings.py?\n```python\nALLOWED_HOSTS = ['*']\n```",
+    "answers": [
+      "Дозволяє підключення з будь-якої адреси",
+      "Обмежує підключення тільки localhost",
+      "Вимикає сайт",
+      "Додає підтримку тільки HTTPS"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Що таке middleware у Django?",
+    "answers": [
+      "Клас або функція для обробки запитів/відповідей на рівні між сервером і view",
+      "Модель бази даних",
+      "Менеджер сесій",
+      "Засіб кешування"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Що робить цей шаблонний фрагмент?\n```django\n{% for b in books %}{{ b.title }} {% endfor %}\n```",
+    "answers": [
+      "Виведе список назв книг",
+      "Виведе лише першу книгу",
+      "Виведе тільки шаблон",
+      "Виведе імена користувачів"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Як вказати файл-завантажувач у моделі?",
+    "answers": [
+      "models.FileField(upload_to='files/')",
+      "models.CharField(max_length=255)",
+      "models.BooleanField()",
+      "models.ImageField()"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Що робить функція slugify у Django?",
+    "answers": [
+      "Перетворює текст у URL-friendly формат",
+      "Шифрує дані",
+      "Додає дані в БД",
+      "Відправляє email"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Як можна додати власне повідомлення про помилку до поля форми?",
+    "answers": [
+      "error_message",
+      "help_text",
+      "error_messages={'required': 'Обов'язково'}",
+      "verbose_name"
+    ],
+    "correctAnswerId": 2
+  },
+  {
+    "question": "Що поверне цей код?\n```python\nUser.objects.filter(email__icontains='gmail.com').exists()\n```",
+    "answers": [
+      "Кількість юзерів з gmail",
+      "True, якщо є хоч один такий юзер",
+      "Список юзерів",
+      "Значення None"
+    ],
+    "correctAnswerId": 1
+  },
+  {
+    "question": "Що таке context_processor у Django?",
+    "answers": [
+      "Функція, яка додає змінні до всіх шаблонів",
+      "Декоратор для models",
+      "Сигнал для signals",
+      "Клас DRF View"
+    ],
+    "correctAnswerId": 0
+  },
+  {
+    "question": "Як налаштувати власний admin-клас для моделі Book?",
+    "answers": [
+      "Створити клас BookAdmin(admin.ModelAdmin) та зареєструвати його у admin.site.register",
+      "Додати метод __str__ у Book",
+      "Відредагувати файл settings.py",
+      "Створити BookSerializer"
+    ],
+    "correctAnswerId": 0
+  }
+]

@@ -1,0 +1,455 @@
+{
+  "test_title": "CSS",
+  "tasks": [
+    {
+      "title": "Заповнити пропуск: підключення CSS-файлу",
+      "description": "Додайте рядок у head, щоб підключити зовнішній файл стилів style.css.",
+      "initial_code": "<head>\n  /* пропуск */\n</head>",
+      "task_type": "fill_gap",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "<head>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>",
+          "is_primary": true,
+          "hint": "rel=\"stylesheet\" вказує, що це CSS."
+        },
+        {
+          "code": "<head>\n  <style>@import url(\"style.css\");</style>\n</head>",
+          "hint": "Альтернативний @import, але він завантажується пізніше."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: одиниці виміру",
+      "description": "Вкажіть одиницю, щоб задати ширину елементу в 200 пікселів.",
+      "initial_code": ".box {\n  width: 200/* пропуск */;\n}",
+      "task_type": "fill_gap",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": ".box {\n  width: 200px;\n}",
+          "is_primary": true,
+          "hint": "px — фіксована одиниця в пікселях."
+        },
+        {
+          "code": ".box {\n  width: 200%;\n}",
+          "hint": "% дає ширину відносно контейнера."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: забутий крапка з комою",
+      "description": "Цей стиль не працює через відсутність крапки з комою в кінці декларації.",
+      "initial_code": "p {\n  color: red\n  font-size: 16px;\n}",
+      "task_type": "fix_bug",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "p {\n  color: red;\n  font-size: 16px;\n}",
+          "is_primary": true,
+          "hint": "Кожна декларація має закінчуватися \";\"."
+        },
+        {
+          "code": "p {\n  color: red !important;\n  font-size: 16px;\n}",
+          "hint": "!important може виправити конфлікт, але не забувайте крапку з комою."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: селектор за класом",
+      "description": "Додайте селектор, щоб стилізувати елементи з класом btn.",
+      "initial_code": "/* вставити селектор */ {\n  background: blue;\n}",
+      "task_type": "complete",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": ".btn {\n  background: blue;\n}",
+          "is_primary": true,
+          "hint": "Клас позначається крапкою."
+        },
+        {
+          "code": "[class=\"btn\"] {\n  background: blue;\n}",
+          "hint": "Атрибутний селектор — альтернатива."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: box-sizing",
+      "description": "Вкажіть значення, щоб padding і border були враховані у width/height.",
+      "initial_code": "*, *::before, *::after {\n  box-sizing: /* пропуск */;\n}",
+      "task_type": "fill_gap",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "*, *::before, *::after {\n  box-sizing: border-box;\n}",
+          "is_primary": true,
+          "hint": "border-box включає padding і border."
+        },
+        {
+          "code": "*, *::before, *::after {\n  box-sizing: content-box;\n}",
+          "hint": "content-box — значення за замовчуванням."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: специфічність селекторів",
+      "description": "Правило не працює через низьку специфічність селектора.",
+      "initial_code": "#header h1 {\n  color: green;\n}\nh1 {\n  color: red;\n}",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "#header h1 { color: green !important; }\nh1 { color: red; }",
+          "is_primary": true,
+          "hint": "!important підвищує пріоритет."
+        },
+        {
+          "code": "#header > h1 { color: green; }\nh1 { color: red; }",
+          "hint": "Додайте > для більшої специфічності."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: flex-контейнер",
+      "description": "Додайте один рядок, щоб контейнер став flex-боксом.",
+      "initial_code": ".container {\n  /* вставте тут */\n  gap: 10px;\n}",
+      "task_type": "complete",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": ".container {\n  display: flex;\n  gap: 10px;\n}",
+          "is_primary": true,
+          "hint": "display: flex робить батьківський контейнер флексом."
+        },
+        {
+          "code": ".container {\n  display: inline-flex;\n  gap: 10px;\n}",
+          "hint": "inline-flex зберігає рядковий формат."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: центрування у flex",
+      "description": "Вирівняйте елементи по центру горизонтально.",
+      "initial_code": ".container {\n  display: flex;\n  justify-content: /* пропуск */;\n}",
+      "task_type": "fill_gap",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": ".container {\n  display: flex;\n  justify-content: center;\n}",
+          "is_primary": true,
+          "hint": "center розподіляє простір порівну."
+        },
+        {
+          "code": ".container {\n  display: flex;\n  justify-content: space-around;\n}",
+          "hint": "space-around додає відступи з обох боків кожного елемента."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: відсутня одиниця line-height",
+      "description": "line-height без одиниці може працювати нестабільно.",
+      "initial_code": "p {\n  font-size: 16px;\n  line-height: 1.5\n}",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "p {\n  font-size: 16px;\n  line-height: 1.5;\n}",
+          "is_primary": true,
+          "hint": "Додайте крапку з комою."
+        },
+        {
+          "code": "p {\n  font-size: 16px;\n  line-height: 24px;\n}",
+          "hint": "Фіксована висота рядка також варіант."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: медіа-запит для мобільних",
+      "description": "Додайте медіа-запит для max-width 600px.",
+      "initial_code": "/* вставити тут */ {\n  body { font-size: 14px; }\n}",
+      "task_type": "complete",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": "@media (max-width: 600px) {\n  body { font-size: 14px; }\n}",
+          "is_primary": true,
+          "hint": "max-width застосує стилі до вузьких екранів."
+        },
+        {
+          "code": "@media screen and (max-width: 600px) {\n  body { font-size: 14px; }\n}",
+          "hint": "Додавання screen уточнює тип медіа."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: псевдо-клас hover",
+      "description": "Зробіть фон кнопки синім при наведенні.",
+      "initial_code": "button:hover {\n  background-color: /* пропуск */;\n}",
+      "task_type": "fill_gap",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "button:hover {\n  background-color: blue;\n}",
+          "is_primary": true,
+          "hint": "CSS-кольори можна вказувати назвами."
+        },
+        {
+          "code": "button:hover {\n  background-color: #0000ff;\n}",
+          "hint": "Шістнадцятковий код теж працює."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: неправильний селектор дочірнього елемента",
+      "description": "Селектор .nav ul не вибирає безпосередніх дітей, хоча потрібно саме їх.",
+      "initial_code": ".nav ul {\n  list-style: none;\n}",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": ".nav > ul { list-style: none; }",
+          "is_primary": true,
+          "hint": "> вибирає безпосередніх дітей."
+        },
+        {
+          "code": ".nav li { list-style: none; }",
+          "hint": "Можна стилізувати li напряму."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: grid-контейнер",
+      "description": "Додайте властивість, щоб контейнер став CSS Grid.",
+      "initial_code": ".grid {\n  /* вставити тут */\n  gap: 20px;\n}",
+      "task_type": "complete",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": ".grid {\n  display: grid;\n  gap: 20px;\n}",
+          "is_primary": true,
+          "hint": "display: grid активує Grid Layout."
+        },
+        {
+          "code": ".grid {\n  display: inline-grid;\n  gap: 20px;\n}",
+          "hint": "inline-grid робить контейнер рядковим."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: визначення колонок grid",
+      "description": "Задайте дві колонки по 1fr кожна.",
+      "initial_code": ".grid {\n  display: grid;\n  grid-template-columns: /* пропуск */;\n}",
+      "task_type": "fill_gap",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": ".grid {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n}",
+          "is_primary": true,
+          "hint": "fr — частка вільного простору."
+        },
+        {
+          "code": ".grid {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n}",
+          "hint": "repeat дозволяє скоротити запис."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: забутий знак # для id",
+      "description": "Селектор не працює, бо забули # перед id.",
+      "initial_code": "header {\n  background: gray;\n}\nheader-title {\n  color: white;\n}",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "header {\n  background: gray;\n}\n#header-title {\n  color: white;\n}",
+          "is_primary": true,
+          "hint": "Для id використовується #."
+        },
+        {
+          "code": "header {\n  background: gray;\n}\n[id=\"header-title\"] {\n  color: white;\n}",
+          "hint": "Атрибутний селектор альтернативний."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: opacity для прозорості",
+      "description": "Зробіть елемент напівпрозорим на 50%.",
+      "initial_code": ".overlay {\n  /* вставити тут */\n}",
+      "task_type": "complete",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": ".overlay {\n  opacity: 0.5;\n}",
+          "is_primary": true,
+          "hint": "opacity від 0 до 1."
+        },
+        {
+          "code": ".overlay {\n  background-color: rgba(0,0,0,0.5);\n}",
+          "hint": "rgba задає прозорість кольору."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: псевдо-елемент before",
+      "description": "Додайте вміст перед елементом через ::before.",
+      "initial_code": ".item::before {\n  content: /* пропуск */;\n}",
+      "task_type": "fill_gap",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": ".item::before {\n  content: \"★\";\n}",
+          "is_primary": true,
+          "hint": "content має бути рядком у лапках."
+        },
+        {
+          "code": ".item::before {\n  content: url(\"icon.svg\");\n}",
+          "hint": "Можна вставити зображення як вміст."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: забутий vendor-prefix",
+      "description": "Трансформація не працює у старих браузерах через відсутність префікса.",
+      "initial_code": ".box {\n  transform: rotate(45deg);\n}",
+      "task_type": "fix_bug",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": ".box {\n  -webkit-transform: rotate(45deg);\n  transform: rotate(45deg);\n}",
+          "is_primary": true,
+          "hint": "Додайте -webkit- для Safari."
+        },
+        {
+          "code": ".box {\n  -ms-transform: rotate(45deg);\n  transform: rotate(45deg);\n}",
+          "hint": "Для старих версій IE використовуйте -ms-."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: transition для анімації",
+      "description": "Додайте перехід фону за 0.3 секунди при зміні.",
+      "initial_code": ".button {\n  background: red;\n  /* вставити тут */\n}",
+      "task_type": "complete",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": ".button {\n  background: red;\n  transition: background 0.3s ease;\n}",
+          "is_primary": true,
+          "hint": "transition-property duration easing."
+        },
+        {
+          "code": ".button {\n  background: red;\n  transition: all 0.3s;\n}",
+          "hint": "all анімує всі властивості."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: позиціонування елемента",
+      "description": "Зробіть елемент абсолютним.",
+      "initial_code": ".modal {\n  /* пропуск */\n  top: 0;\n  left: 0;\n}",
+      "task_type": "fill_gap",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": ".modal {\n  position: absolute;\n  top: 0;\n  left: 0;\n}",
+          "is_primary": true,
+          "hint": "absolute позиціонує відносно найближчого relative."
+        },
+        {
+          "code": ".modal {\n  position: fixed;\n  top: 0;\n  left: 0;\n}",
+          "hint": "fixed прив’язує до вікна браузера."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: неправильно заданий z-index",
+      "description": "Елемент не накладається зверху, бо його position не задано.",
+      "initial_code": ".tooltip {\n  z-index: 10;\n}",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": ".tooltip {\n  position: relative;\n  z-index: 10;\n}",
+          "is_primary": true,
+          "hint": "z-index працює лише для позиціонованих елементів."
+        },
+        {
+          "code": ".tooltip {\n  position: absolute;\n  z-index: 10;\n}",
+          "hint": "absolute теж забезпечить позиціювання."
+        }
+      ]
+    },
+    {
+      "title": "Завершити: CSS-перемінні",
+      "description": "Оголосіть змінну --main-color з кольором #3498db.",
+      "initial_code": ":root {\n  /* вставити тут */\n}",
+      "task_type": "complete",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": ":root {\n  --main-color: #3498db;\n}",
+          "is_primary": true,
+          "hint": "Змінні оголошуються в :root."
+        },
+        {
+          "code": ":root {\n  --primary: #3498db;\n}",
+          "hint": "Назва змінної може бути будь-якою на початку з \"--\"."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: використання CSS-перемінної",
+      "description": "Застосуйте змінну --main-color до фону.",
+      "initial_code": ".header {\n  background-color: var(/* пропуск */);\n}",
+      "task_type": "fill_gap",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": ".header {\n  background-color: var(--main-color);\n}",
+          "is_primary": true,
+          "hint": "var(--main-color) використовує значення змінної."
+        },
+        {
+          "code": ".header {\n  background-color: var(--primary);\n}",
+          "hint": "Якщо оголосили --primary, використовуйте його."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: вибір псевдо-класу для непарних рядків",
+      "description": "Виберіть правильний псевдо-клас, щоб підсвітити непарні рядки таблиці.",
+      "initial_code": "table tr:nth-child(/* пропуск */) {\n  background-color: #f0f0f0;\n}",
+      "task_type": "fill_gap",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": "table tr:nth-child(odd) {\n  background-color: #f0f0f0;\n}",
+          "is_primary": true,
+          "hint": "odd вибирає 1-й, 3-й, 5-й тощо рядки."
+        },
+        {
+          "code": "table tr:nth-child(2n-1) {\n  background-color: #f0f0f0;\n}",
+          "hint": "2n-1 — математичний еквівалент, дає ті ж непарні рядки."
+        }
+      ]
+    },
+    {
+      "title": "Виправити помилку: контейнер не обчислює висоту плаваючих дітей",
+      "description": "Батьківський .container має висоту 0 через те, що всі діти плавають.",
+      "initial_code": ".container {\n  /* пропуск для clearfix */\n}\n.container .box {\n  float: left;\n  width: 100px;\n  height: 100px;\n}",
+      "task_type": "fix_bug",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": ".container {\n  overflow: auto;\n}\n.container .box {\n  float: left;\n  width: 100px;\n  height: 100px;\n}",
+          "is_primary": true,
+          "hint": "overflow: auto змушує контейнер врахувати плаваючі елементи."
+        },
+        {
+          "code": ".container::after {\n  content: '';\n  display: table;\n  clear: both;\n}\n.container .box {\n  float: left;\n  width: 100px;\n  height: 100px;\n}",
+          "hint": "Псевдо-clearfix через ::after очищує float."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,419 @@
+{
+  "test_title": "JavaScript",
+  "tasks": [
+    {
+      "title": "Заповнення масиву парними числами",
+      "description": "Завершіть функцію, яка створює масив з парними числами від 2 до n включно.",
+      "initial_code": "function createEvenArray(n) {\n  // Ваш код:\n  \n}\n\n// Приклад використання:\n// createEvenArray(10) повинен повернути [2, 4, 6, 8, 10]",
+      "task_type": "complete",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "function createEvenArray(n) {\n  const result = [];\n  for (let i = 2; i <= n; i += 2) {\n    result.push(i);\n  }\n  return result;\n}\n\n// Приклад використання:\n// createEvenArray(10) повинен повернути [2, 4, 6, 8, 10]",
+          "is_primary": true,
+          "hint": "Використовуйте цикл for з кроком 2 для додавання лише парних чисел."
+        },
+        {
+          "code": "function createEvenArray(n) {\n  return Array.from({length: Math.floor(n/2)}, (_, i) => (i + 1) * 2);\n}\n\n// Приклад використання:\n// createEvenArray(10) повинен повернути [2, 4, 6, 8, 10]",
+          "hint": "Можна використати Array.from для створення масиву певної довжини з функцією-мапером."
+        }
+      ]
+    },
+    {
+      "title": "Виправлення функції зворотного рядка",
+      "description": "Знайдіть та виправте помилку у функції, яка повинна повертати рядок у зворотному порядку.",
+      "initial_code": "function reverseString(str) {\n  let result = '';\n  \n  for (let i = 0; i <= str.length; i++) {\n    result = str[i] + result;\n  }\n  \n  return result;\n}",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "function reverseString(str) {\n  let result = '';\n  \n  for (let i = 0; i < str.length; i++) {\n    result = str[i] + result;\n  }\n  \n  return result;\n}",
+          "hint": "Зверніть увагу на умову завершення циклу."
+        },
+        {
+          "code": "function reverseString(str) {\n  let result = '';\n  \n  for (let i = str.length - 1; i >= 0; i--) {\n    result += str[i];\n  }\n  \n  return result;\n}",
+          "is_primary": true,
+          "hint": "Можна перебирати рядок з кінця до початку."
+        }
+      ]
+    },
+    {
+      "title": "Знаходження максимального елемента у масиві",
+      "description": "Створіть функцію findMax, яка приймає масив чисел і повертає найбільше число з масиву. Функція повинна повертати null для порожнього масиву.",
+      "initial_code": "function findMax(arr) {\n  // Ваш код: функція має повертати найбільше число з масиву\n  // Якщо масив порожній, поверніть null\n  \n}\n\n// Приклади використання:\n// findMax([3, 7, 2, 9, 1]) повинен повернути 9\n// findMax([-1, -5, -3]) повинен повернути -1\n// findMax([]) повинен повернути null",
+      "task_type": "complete",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "function findMax(arr) {\n  if (arr.length === 0) return null;\n  \n  let max = arr[0];\n  \n  for (let i = 1; i < arr.length; i++) {\n    if (arr[i] > max) {\n      max = arr[i];\n    }\n  }\n  \n  return max;\n}\n\n// Приклади використання:\n// findMax([3, 7, 2, 9, 1]) повинен повернути 9\n// findMax([-1, -5, -3]) повинен повернути -1\n// findMax([]) повинен повернути null",
+          "is_primary": true,
+          "hint": "Спочатку обробіть крайовий випадок з порожнім масивом. Потім почніть з першого елемента як потенційного максимуму і пройдіться циклом по решті масиву, оновлюючи максимальне значення, якщо знайдено більше число."
+        },
+        {
+          "code": "function findMax(arr) {\n  if (arr.length === 0) return null;\n  return Math.max(...arr);\n}\n\n// Приклади використання:\n// findMax([3, 7, 2, 9, 1]) повинен повернути 9\n// findMax([-1, -5, -3]) повинен повернути -1\n// findMax([]) повинен повернути null",
+          "hint": "Це альтернативне рішення використовує вбудовану функцію Math.max() разом з оператором розгортання (...) для знаходження максимального значення в масиві. Перед цим все одно потрібно перевірити, чи масив не порожній."
+        }
+      ]
+    },
+    {
+      "title": "Підрахунок кількості входжень кожного елемента масиву",
+      "description": "Напишіть функцію countOccurrences, яка приймає масив і повертає об'єкт, де ключі - це унікальні елементи масиву, а значення - кількість їх входжень у масив.",
+      "initial_code": "function countOccurrences(arr) {\n  // Ваш код: функція має підрахувати, скільки разів кожен елемент\n  // зустрічається в масиві, і повернути об'єкт з результатами\n  \n}\n\n// Приклад використання:\n// countOccurrences(['a', 'b', 'a', 'c', 'b', 'a']) повинен повернути { a: 3, b: 2, c: 1 }",
+      "task_type": "complete",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "function countOccurrences(arr) {\n  const result = {};\n  \n  for (let item of arr) {\n    if (result[item]) {\n      result[item]++;\n    } else {\n      result[item] = 1;\n    }\n  }\n  \n  return result;\n}\n\n// Приклад використання:\n// countOccurrences(['a', 'b', 'a', 'c', 'b', 'a']) повинен повернути { a: 3, b: 2, c: 1 }",
+          "is_primary": true,
+          "hint": "Створіть об'єкт для зберігання результатів. Пройдіться по кожному елементу масиву: якщо елемент вже є в об'єкті, збільште його лічильник; якщо ні, ініціалізуйте його з 1."
+        },
+        {
+          "code": "function countOccurrences(arr) {\n  return arr.reduce((count, item) => {\n    count[item] = (count[item] || 0) + 1;\n    return count;\n  }, {});\n}\n\n// Приклад використання:\n// countOccurrences(['a', 'b', 'a', 'c', 'b', 'a']) повинен повернути { a: 3, b: 2, c: 1 }",
+          "hint": "Це рішення використовує метод reduce() для проходження по масиву і накопичення результату в об'єкті. Вираз count[item] = (count[item] || 0) + 1 збільшує лічильник елемента або встановлює 1, якщо елемент зустрічається вперше."
+        }
+      ]
+    },
+    {
+      "title": "Перевірка, чи слово є паліндромом",
+      "description": "Створіть функцію isPalindrome, яка перевіряє, чи є рядок паліндромом (читається однаково зліва направо і справа наліво). Функція повинна ігнорувати регістр, пробіли та знаки пунктуації.",
+      "initial_code": "function isPalindrome(str) {\n  // Ваш код: перевірте, чи є рядок паліндромом\n  // Ігноруйте регістр, пробіли та знаки пунктуації\n  \n}\n\n// Приклади використання:\n// isPalindrome('racecar') повинен повернути true\n// isPalindrome('A man, a plan, a canal: Panama') повинен повернути true\n// isPalindrome('hello') повинен повернути false",
+      "task_type": "complete",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "function isPalindrome(str) {\n  // Очищуємо рядок від спеціальних символів, пробілів і приводимо до нижнього регістру\n  const cleanStr = str.toLowerCase().replace(/[^a-z0-9]/g, '');\n  \n  // Перевіряємо, чи очищений рядок є паліндромом\n  for (let i = 0; i < cleanStr.length / 2; i++) {\n    if (cleanStr[i] !== cleanStr[cleanStr.length - 1 - i]) {\n      return false;\n    }\n  }\n  \n  return true;\n}\n\n// Приклади використання:\n// isPalindrome('racecar') повинен повернути true\n// isPalindrome('A man, a plan, a canal: Panama') повинен повернути true\n// isPalindrome('hello') повинен повернути false",
+          "is_primary": true,
+          "hint": "Спочатку очистіть рядок від всіх символів, крім букв і цифр, та приведіть до нижнього регістру. Потім перевірте, чи очищений рядок читається однаково в обох напрямках, порівнюючи символи з початку та кінця."
+        },
+        {
+          "code": "function isPalindrome(str) {\n  // Очищуємо рядок і приводимо до нижнього регістру\n  const cleanStr = str.toLowerCase().replace(/[^a-z0-9]/g, '');\n  \n  // Створюємо зворотний рядок і порівнюємо з очищеним\n  const reversedStr = cleanStr.split('').reverse().join('');\n  \n  return cleanStr === reversedStr;\n}\n\n// Приклади використання:\n// isPalindrome('racecar') повинен повернути true\n// isPalindrome('A man, a plan, a canal: Panama') повинен повернути true\n// isPalindrome('hello') повинен повернути false",
+          "hint": "Це альтернативне рішення використовує split(), reverse() і join() для створення зворотного рядка, який порівнюється з оригінальним. Перед цим також потрібно очистити рядок від спеціальних символів і привести до нижнього регістру."
+        }
+      ]
+    },
+    {
+      "title": "Перевірка на анаграму",
+      "description": "Реалізуйте функцію isAnagram, яка перевіряє, чи два слова є анаграмами одне одного (ігноруйте регістр та пробіли).",
+      "initial_code": "function isAnagram(a, b) {\n  // Ваш код\n}\n\n// isAnagram('listen', 'silent') має повернути true\n// isAnagram('hello', 'world') має повернути false",
+      "task_type": "complete",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "function isAnagram(a, b) {\n  const clean = s => s.replace(/\\s/g, '').toLowerCase().split('').sort().join('');\n  return clean(a) === clean(b);\n}",
+          "is_primary": true,
+          "hint": "Приведіть рядки до нижнього регістру, приберіть пробіли, відсортуйте символи та порівняйте."
+        },
+        {
+          "code": "function isAnagram(a, b) {\n  if (a.length !== b.length) return false;\n  const map = {};\n  for (let ch of a.toLowerCase()) map[ch] = (map[ch] || 0) + 1;\n  for (let ch of b.toLowerCase()) {\n    if (!map[ch]) return false;\n    map[ch]--;\n  }\n  return Object.values(map).every(v => v === 0);\n}",
+          "hint": "Можна використати об’єкт-лічильник для символів."
+        }
+      ]
+    },
+    {
+      "title": "Унікальні значення у масиві",
+      "description": "Створіть функцію, яка повертає масив лише з унікальних значень вихідного масиву.",
+      "initial_code": "function unique(arr) {\n  // Ваш код\n}\n\n// unique([1,2,2,3,4,4]) має повернути [1,2,3,4]",
+      "task_type": "complete",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "function unique(arr) {\n  return Array.from(new Set(arr));\n}",
+          "is_primary": true,
+          "hint": "Використайте Set для збереження унікальних значень."
+        },
+        {
+          "code": "function unique(arr) {\n  return arr.filter((x, i) => arr.indexOf(x) === i);\n}",
+          "hint": "Можна також використати filter з indexOf."
+        }
+      ]
+    },
+    {
+      "title": "Пошук другого за величиною елемента",
+      "description": "Реалізуйте функцію, яка знаходить другий за величиною елемент у масиві чисел.",
+      "initial_code": "function secondMax(arr) {\n  // Ваш код\n}\n\n// secondMax([4,1,7,3,7]) має повернути 4",
+      "task_type": "complete",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "function secondMax(arr) {\n  const unique = [...new Set(arr)];\n  if (unique.length < 2) return null;\n  unique.sort((a,b)=>b-a);\n  return unique[1];\n}",
+          "is_primary": true,
+          "hint": "Залиште тільки унікальні числа та відсортуйте."
+        },
+        {
+          "code": "function secondMax(arr) {\n  let max = -Infinity, second = -Infinity;\n  for (let n of arr) {\n    if (n > max) {\n      second = max;\n      max = n;\n    } else if (n > second && n < max) {\n      second = n;\n    }\n  }\n  return second === -Infinity ? null : second;\n}",
+          "hint": "Використайте два змінні: max і second."
+        }
+      ]
+    },
+    {
+      "title": "Групування за довжиною рядка",
+      "description": "Напишіть функцію groupByLength, яка групує масив рядків за довжиною.",
+      "initial_code": "function groupByLength(arr) {\n  // Ваш код\n}\n\n// groupByLength(['a', 'bb', 'cc', 'ddd', 'e']) має повернути {1: ['a','e'], 2: ['bb','cc'], 3: ['ddd']}",
+      "task_type": "complete",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "function groupByLength(arr) {\n  return arr.reduce((res, str) => {\n    const l = str.length;\n    if (!res[l]) res[l] = [];\n    res[l].push(str);\n    return res;\n  }, {});\n}",
+          "is_primary": true,
+          "hint": "Використайте reduce для групування."
+        }
+      ]
+    },
+    {
+      "title": "Видалення falsy-значень",
+      "description": "Створіть функцію, яка видаляє всі falsy-значення з масиву (наприклад: false, 0, '', null, undefined, NaN).",
+      "initial_code": "function compact(arr) {\n  // Ваш код\n}\n\n// compact([0, 1, false, 2, '', 3, null]) має повернути [1,2,3]",
+      "task_type": "complete",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "function compact(arr) {\n  return arr.filter(Boolean);\n}",
+          "is_primary": true,
+          "hint": "Фільтруйте масив за допомогою Boolean як колбеку."
+        }
+      ]
+    },
+    {
+      "title": "Розворот слів у реченні",
+      "description": "Завершіть функцію, яка змінює порядок слів у реченні на зворотний.",
+      "initial_code": "function reverseWords(sentence) {\n  // Ваш код\n}\n\n// reverseWords('hello world js') має повернути 'js world hello'",
+      "task_type": "complete",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "function reverseWords(sentence) {\n  return sentence.split(' ').reverse().join(' ');\n}",
+          "is_primary": true,
+          "hint": "Використайте split, reverse та join."
+        }
+      ]
+    },
+    {
+      "title": "Перевірка ізоморфності рядків",
+      "description": "Реалізуйте функцію isIsomorphic(s, t), яка повертає true, якщо рядки ізоморфні: кожен символ s можна однозначно замінити на символ t.",
+      "initial_code": "function isIsomorphic(s, t) {\n  // Ваш код\n}\n\n// isIsomorphic('egg', 'add') → true; isIsomorphic('foo', 'bar') → false",
+      "task_type": "complete",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": "function isIsomorphic(s, t) {\n  if (s.length !== t.length) return false;\n  const mapS = {}, mapT = {};\n  for (let i = 0; i < s.length; i++) {\n    if (!mapS[s[i]]) mapS[s[i]] = t[i];\n    if (!mapT[t[i]]) mapT[t[i]] = s[i];\n    if (mapS[s[i]] !== t[i] || mapT[t[i]] !== s[i]) return false;\n  }\n  return true;\n}",
+          "is_primary": true,
+          "hint": "Ведіть дві відповідності символів з s у t і навпаки."
+        }
+      ]
+    },
+    {
+      "title": "Пошук дублікатів у масиві",
+      "description": "Створіть функцію, яка перевіряє, чи містить масив дублікати.",
+      "initial_code": "function hasDuplicates(arr) {\n  // Ваш код\n}\n\n// hasDuplicates([1,2,3,4,2]) → true; hasDuplicates([1,2,3,4]) → false",
+      "task_type": "complete",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "function hasDuplicates(arr) {\n  return new Set(arr).size !== arr.length;\n}",
+          "is_primary": true,
+          "hint": "Set не містить дублікатів, порівняйте розміри."
+        },
+        {
+          "code": "function hasDuplicates(arr) {\n  const seen = new Set();\n  for (let x of arr) {\n    if (seen.has(x)) return true;\n    seen.add(x);\n  }\n  return false;\n}",
+          "hint": "Використайте Set для поступової перевірки."
+        }
+      ]
+    },
+    {
+      "title": "Сума чисел у рядку",
+      "description": "Реалізуйте функцію, яка знаходить суму всіх чисел, що містяться у рядку (цілі числа, розділені нецифровими символами).",
+      "initial_code": "function sumNumbersInString(str) {\n  // Ваш код\n}\n\n// sumNumbersInString('a12b34c') → 46",
+      "task_type": "complete",
+      "difficulty": 3,
+      "solutions": [
+        {
+          "code": "function sumNumbersInString(str) {\n  return (str.match(/\\d+/g) || []).reduce((sum, n) => sum + Number(n), 0);\n}",
+          "is_primary": true,
+          "hint": "Використайте регулярний вираз для пошуку чисел."
+        }
+      ]
+    },
+    {
+      "title": "Заміна повторюваних символів збереженням порядку",
+      "description": "Завершіть функцію, яка замінює всі повторні входження символів у рядку на '_', залишаючи першу появу без змін.",
+      "initial_code": "function replaceRepeats(str) {\n  // Ваш код\n}\n\n// replaceRepeats('hello') → 'hel_o'",
+      "task_type": "complete",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "function replaceRepeats(str) {\n  const seen = new Set();\n  let res = '';\n  for (let c of str) {\n    if (seen.has(c)) res += '_';\n    else {\n      res += c;\n      seen.add(c);\n    }\n  }\n  return res;\n}",
+          "is_primary": true,
+          "hint": "Використайте Set для відстеження унікальних символів."
+        }
+      ]
+    },
+    {
+      "title": "Виправ баг: невірний this у callback",
+      "description": "Чому цей код виведе undefined замість імені? Виправ помилку.",
+      "initial_code": "const user = {\n  name: 'Oleh',\n  greet: function() {\n    setTimeout(function() {\n      console.log('Hi, ' + this.name);\n    }, 100);\n  }\n};\nuser.greet();",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "setTimeout(() => {\n  console.log('Hi, ' + this.name);\n}, 100);",
+          "is_primary": true,
+          "hint": "Стрілкова функція не має власного this — підхопить контекст user."
+        },
+        {
+          "code": "setTimeout(function() {\n  console.log('Hi, ' + this.name);\n}.bind(this), 100);",
+          "hint": "bind(this) явно встановлює потрібний контекст."
+        }
+      ]
+    },
+    {
+      "title": "Встав пропуск: деструктуризація масиву",
+      "description": "Вставте пропуск, щоб витягнути перше і третє значення з масиву arr у змінні first і third.",
+      "initial_code": "const arr = [1, 2, 3];\nconst [/* пропуск */] = arr;",
+      "task_type": "fill_gap",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "first, , third",
+          "is_primary": true,
+          "hint": "Залиште кому для пропуску елемента."
+        }
+      ]
+    },
+    {
+      "title": "Виправ баг: клонування масиву",
+      "description": "Чому друга змінна nums2 змінюється, якщо змінити nums1? Виправ копіювання масиву.",
+      "initial_code": "const nums1 = [1,2,3];\nconst nums2 = nums1;\nnums1.push(4);",
+      "task_type": "fix_bug",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "const nums2 = nums1.slice();",
+          "is_primary": true,
+          "hint": "slice створює новий масив."
+        },
+        {
+          "code": "const nums2 = [...nums1];",
+          "hint": "Spread-оператор також клонуює масив."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: обʼєднання об'єктів",
+      "description": "Заповніть пропуск, щоб створити новий об'єкт, який об'єднує obj1 та obj2 (властивості obj2 мають пріоритет).",
+      "initial_code": "const merged = /* пропуск */;",
+      "task_type": "fill_gap",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "{ ...obj1, ...obj2 }",
+          "is_primary": true,
+          "hint": "Порядок деструктуризації визначає пріоритет."
+        },
+        {
+          "code": "Object.assign({}, obj1, obj2)",
+          "hint": "Object.assign копіює властивості у новий обʼєкт."
+        }
+      ]
+    },
+    {
+      "title": "Виправ баг: область видимості let/var",
+      "description": "Чому всі алерти виведуть 3, а не 0,1,2? Виправ це одним словом.",
+      "initial_code": "for (var i = 0; i < 3; i++) {\n  setTimeout(() => alert(i), 0);\n}",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "for (let i = 0; i < 3; i++) {\n  setTimeout(() => alert(i), 0);\n}",
+          "is_primary": true,
+          "hint": "let створює окрему змінну для кожної ітерації."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: пошук підрядка",
+      "description": "Заповніть пропуск, щоб перевірити, чи рядок str містить підрядок 'cat'.",
+      "initial_code": "if (/* пропуск */) { /* ... */ }",
+      "task_type": "fill_gap",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "str.includes('cat')",
+          "is_primary": true,
+          "hint": "includes повертає true, якщо підрядок знайдено."
+        },
+        {
+          "code": "str.indexOf('cat') !== -1",
+          "hint": "indexOf повертає позицію або -1."
+        }
+      ]
+    },
+    {
+      "title": "Виправ баг: неправильне використання Array.map",
+      "description": "Чому arr.map(alert) виведе undefined? Виправ цю помилку.",
+      "initial_code": "const arr = [1,2,3];\nconst result = arr.map(alert);",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "const result = arr.map(x => alert(x));",
+          "is_primary": true,
+          "hint": "alert не повертає значення, тому result буде [undefined,...]."
+        },
+        {
+          "code": "arr.forEach(alert);",
+          "hint": "forEach підходить для побічних ефектів, map — для перетворень."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: перевірка типу даних",
+      "description": "Вставте пропуск, щоб перевірити, чи перемінна x є масивом.",
+      "initial_code": "if (/* пропуск */) { /* ... */ }",
+      "task_type": "fill_gap",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "Array.isArray(x)",
+          "is_primary": true,
+          "hint": "Array.isArray повертає true, якщо це масив."
+        }
+      ]
+    },
+    {
+      "title": "Виправ баг: мутування об'єкта",
+      "description": "Функція має повертати новий обʼєкт, не змінюючи оригінальний obj. Виправ помилку.",
+      "initial_code": "function setAge(obj, age) {\n  obj.age = age;\n  return obj;\n}",
+      "task_type": "fix_bug",
+      "difficulty": 2,
+      "solutions": [
+        {
+          "code": "function setAge(obj, age) {\n  return { ...obj, age };\n}",
+          "is_primary": true,
+          "hint": "Створіть новий обʼєкт через spread."
+        },
+        {
+          "code": "function setAge(obj, age) {\n  return Object.assign({}, obj, { age });\n}",
+          "hint": "Object.assign також створює новий обʼєкт."
+        }
+      ]
+    },
+    {
+      "title": "Заповнити пропуск: перевірка на NaN",
+      "description": "Вставте пропуск, щоб перевірити, чи змінна value є NaN.",
+      "initial_code": "if (/* пропуск */) { /* ... */ }",
+      "task_type": "fill_gap",
+      "difficulty": 1,
+      "solutions": [
+        {
+          "code": "Number.isNaN(value)",
+          "is_primary": true,
+          "hint": "Number.isNaN — сучасний спосіб перевірки на NaN."
+        },
+        {
+          "code": "isNaN(value)",
+          "hint": "isNaN теж працює, але менш строго."
+        }
+      ]
+    }
+  ]
+}
