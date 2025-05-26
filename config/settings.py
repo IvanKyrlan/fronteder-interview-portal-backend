@@ -65,6 +65,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
+    "https://fronteder-interview-portal-frontend.onrender.com",
     "http://localhost:5173",  # Vite dev server
     "http://localhost:3000",
     "http://127.0.0.1:5173",
