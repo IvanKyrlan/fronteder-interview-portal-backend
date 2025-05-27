@@ -65,15 +65,15 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "https://fronteder-interview-portal-frontend.onrender.com",
-    "http://localhost:5173",  # Vite dev server
+    "https://frontender-interview-portal.netlify.app",
+    "http://localhost:5173",
     "http://localhost:3000",
     "http://127.0.0.1:5173",
     "http://127.0.0.1:3000",
-    "https://www.youtube.com",      # Додати YouTube
-    "https://youtube.com",          # Додати YouTube
-    "https://www.googleapis.com",   # Додати YouTube API
-    "https://googleapis.com",       # Додати YouTube API
+    "https://www.youtube.com",
+    "https://youtube.com",
+    "https://www.googleapis.com",
+    "https://googleapis.com",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
