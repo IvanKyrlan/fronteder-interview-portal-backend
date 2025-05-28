@@ -9,7 +9,7 @@ class Command(BaseCommand):
     help = 'Imports questions from JSON files to database'
 
     def handle(self, *args, **kwargs):
-        data_dir = os.path.join(settings.BASE_DIR, '..', 'fronteder-interview-portal-backend', 'data', 'tests-tasks')
+        data_dir = os.path.join(settings.BASE_DIR, 'data', 'tests-tasks')
 
         if not os.path.exists(data_dir):
             self.stdout.write(self.style.ERROR(f'Directory {data_dir} not found'))

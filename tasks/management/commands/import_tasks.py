@@ -22,7 +22,7 @@ class Command(BaseCommand):
             self._import_from_file(file_path)
             return
 
-        data_dir = os.path.join(settings.BASE_DIR, '..', 'fronteder-interview-portal-backend', 'data', 'tests-tasks')
+        data_dir = os.path.join(settings.BASE_DIR, 'data', 'tests-tasks')
 
         if not os.path.exists(data_dir):
             self.stdout.write(self.style.ERROR(f'Directory {data_dir} not found'))
