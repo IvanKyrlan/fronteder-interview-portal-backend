@@ -11,7 +11,7 @@ class Command(BaseCommand):
                 'icon': 'DiHtml5',
                 'color': 'text-orange-500',
                 'questions': 30,
-                'duration': 60,
+                'duration': 15,
                 'description': 'Основи HTML: теги, атрибути, семантика'
             },
             {
@@ -19,7 +19,7 @@ class Command(BaseCommand):
                 'icon': 'DiCss3',
                 'color': 'text-blue-500',
                 'questions': 30,
-                'duration': 60,
+                'duration': 15,
                 'description': 'Стилізація, Flexbox, Grid, анімації'
             },
             {
@@ -27,7 +27,7 @@ class Command(BaseCommand):
                 'icon': 'DiJsBadge',
                 'color': 'text-yellow-400',
                 'questions': 30,
-                'duration': 60,
+                'duration': 15,
                 'description': 'Основи JS, асинхронність, робота з DOM'
             },
             {
@@ -35,7 +35,7 @@ class Command(BaseCommand):
                 'icon': 'DiReact',
                 'color': 'text-blue-400',
                 'questions': 30,
-                'duration': 60,
+                'duration': 15,
                 'description': 'Компоненти, хуки, робота зі станом'
             },
             {
@@ -43,7 +43,7 @@ class Command(BaseCommand):
                 'icon': 'DiDatabase',
                 'color': 'text-blue-600',
                 'questions': 30,
-                'duration': 60,
+                'duration': 15,
                 'description': 'Запити, JOIN, індекси, оптимізація'
             },
             {
@@ -51,7 +51,7 @@ class Command(BaseCommand):
                 'icon': 'DiDjango',
                 'color': 'text-green-500',
                 'questions': 30,
-                'duration': 60,
+                'duration': 15,
                 'description': 'Моделі, Views, шаблони, ORM'
             },
         ]

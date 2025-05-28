@@ -16,21 +16,17 @@ class Command(BaseCommand):
         file_path = options.get('file')
 
         if file_path:
-            # Використовуємо шлях вказаний користувачем
             if not os.path.exists(file_path):
                 self.stdout.write(self.style.ERROR(f'File {file_path} not found'))
                 return
             self._import_from_file(file_path)
             return
 
-        # Якщо шлях не вказаний, шукаємо у стандартних місцях
-        data_dir = os.path.join(settings.BASE_DIR, '..', 'fronteder-interview-portal-frontend', 'src', 'data')
+        data_dir = os.path.join(settings.BASE_DIR, '..', 'fronteder-interview-portal-backend', 'data', 'tests-tasks')
 
-        # Перевіряємо, чи існує директорія
         if not os.path.exists(data_dir):
             self.stdout.write(self.style.ERROR(f'Directory {data_dir} not found'))
-            # Спробуємо альтернативний шлях
-            data_dir = r'C:\Users\Ivan Kyrlan\Documents\Study\fronteder-interview-portal\fronteder-interview-portal-backend\data'
+            data_dir = r'C:\Users\Ivan Kyrlan\Documents\Study\fronteder-interview-portal\fronteder-interview-portal-backend\data\tests-tasks'
             if not os.path.exists(data_dir):
                 self.stdout.write(self.style.ERROR('No directory with tasks found'))
                 return
@@ -63,11 +59,9 @@ class Command(BaseCommand):
                 return
 
             if isinstance(tasks_data, dict):
-                # Формат: {"test_title": "JavaScript", "tasks": [...]}
                 test_title = tasks_data.get('test_title', test_title)
                 tasks = tasks_data.get('tasks', [])
             else:
-                # Формат: [{"test_title": "JavaScript", "title": "Task 1", ...}, ...]
                 tasks = tasks_data
                 if not test_title and tasks and 'test_title' in tasks[0]:
                     test_title = tasks[0]['test_title']
@@ -84,18 +78,15 @@ class Command(BaseCommand):
 
             imported_count = 0
             for task_data in tasks:
-                # Обов'язкові поля
                 title = task_data.get('title')
                 description = task_data.get('description')
                 initial_code = task_data.get('initial_code')
                 task_type = task_data.get('task_type', 'complete')
 
-                # Перевірка обов'язкових полів
                 if not all([title, description, initial_code]):
                     self.stdout.write(self.style.WARNING(f'Skipping task: missing required fields'))
                     continue
 
-                # Створюємо або оновлюємо завдання
                 task, created = InteractiveTask.objects.update_or_create(
                     test=test,
                     title=title,
@@ -107,13 +98,11 @@ class Command(BaseCommand):
                     }
                 )
 
-                # Додаємо рішення
                 solutions = task_data.get('solutions', [])
                 if not solutions:
                     self.stdout.write(self.style.WARNING(f'No solutions provided for task "{title}"'))
                     continue
 
-                # Видаляємо наявні рішення перед додаванням нових
                 task.solutions.all().delete()
 
                 for idx, solution_data in enumerate(solutions):
@@ -122,7 +111,6 @@ class Command(BaseCommand):
                         is_primary = solution_data.get('is_primary', idx == 0)
                         hint = solution_data.get('hint')
                     else:
-                        # Якщо рішення передане як рядок
                         solution_code = solution_data
                         is_primary = (idx == 0)
                         hint = None

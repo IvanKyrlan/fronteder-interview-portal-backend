@@ -17,19 +17,13 @@ class RegisterSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username', 'email', 'password', 'password_confirm')
 
-    def validate_username(self, value):
-        if User.objects.filter(username=value).exists():
-            raise serializers.ValidationError("Користувач з таким ім'ям вже існує")
-        return value
-
-    def validate_email(self, value):
-        if User.objects.filter(email=value).exists():
-            raise serializers.ValidationError("Користувач з таким email вже існує")
-        return value
-
     def validate(self, data):
         if data['password'] != data['password_confirm']:
             raise serializers.ValidationError({"password": "Паролі не співпадають"})
+        if User.objects.filter(username=data['username']).exists():
+            raise serializers.ValidationError({"username": "Користувач з таким ім'ям вже існує"})
+        if User.objects.filter(email=data['email']).exists():
+            raise serializers.ValidationError({"email": "Користувач з таким email вже існує"})
         return data
 
     def create(self, validated_data):

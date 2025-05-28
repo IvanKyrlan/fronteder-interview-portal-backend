@@ -1,0 +1,677 @@
+[
+  {
+    "model": "articles.article",
+    "pk": 101,
+    "fields": {
+      "title": "API у Frontend: 5 практичних завдань для прокачки навичок",
+      "slug": "frontend-api-practice-tasks",
+      "article_type": "task",
+      "description": "П'ять реальних завдань з роботи з API на JavaScript. Завдання допоможуть краще зрозуміти, як працювати з мережевими запитами, обробляти дані та будувати інтерактивні інтерфейси.",
+      "summary": "<ul><li>Формування запитів fetch</li><li>Робота з JSON-даними</li><li>Інтеграція API у UI</li></ul><p>Ці завдання ідеально підійдуть для самостійної практики або як частина технічного завдання.</p>",
+      "author": 1,
+      "published_at": "2025-05-05T12:00:00Z",
+      "featured": true,
+      "thumbnail": "articles/thumbnails/frontend-api-tasks.jpg"
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 201,
+    "fields": {
+      "article": 101,
+      "order": 1,
+      "title": "Завдання 1: Отримання списку користувачів",
+      "content": "<p>Підключіться до <a href='https://jsonplaceholder.typicode.com/users'>JSONPlaceholder Users API</a> і виведіть список користувачів у HTML-таблиці з колонками: Ім’я, Email, Компанія.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "fetch('https://jsonplaceholder.typicode.com/users')\n  .then(res => res.json())\n  .then(users => {\n    const table = document.getElementById('users');\n    users.forEach(user => {\n      const row = document.createElement('tr');\n      row.innerHTML = `<td>${user.name}</td><td>${user.email}</td><td>${user.company.name}</td>`;\n      table.appendChild(row);\n    });\n  });",
+      "language": "javascript",
+      "code_description": "Запит до API та динамічне формування таблиці."
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 202,
+    "fields": {
+      "article": 101,
+      "order": 2,
+      "title": "Завдання 2: Створення нового користувача",
+      "content": "<p>Реалізуйте форму з полями Name, Username, Email. По сабміту виконайте POST-запит до <a href='https://jsonplaceholder.typicode.com/users'>Users API</a> і виведіть ID створеного користувача.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "document.querySelector('form').addEventListener('submit', e => {\n  e.preventDefault();\n  const data = {\n    name: e.target.name.value,\n    username: e.target.username.value,\n    email: e.target.email.value\n  };\n  fetch('https://jsonplaceholder.typicode.com/users', {\n    method: 'POST',\n    headers: { 'Content-Type': 'application/json' },\n    body: JSON.stringify(data)\n  })\n    .then(res => res.json())\n    .then(result => alert(`Користувач створений з ID: ${result.id}`));\n});",
+      "language": "javascript",
+      "code_description": "Відправлення POST-запиту та обробка відповіді."
+    }
+  },
+  {
+    "model": "articles.article",
+    "pk": 102,
+    "fields": {
+      "title": "React Server Components: майбутнє або тренд?",
+      "slug": "react-server-components-future",
+      "article_type": "news",
+      "description": "Що таке React Server Components і як вони змінюють підхід до розробки? Пояснення, переваги та приклади.",
+      "summary": "<ul><li>Виконання логіки на сервері</li><li>Зменшення об’єму бандлу</li><li>Приклади у Next.js</li></ul><p>Дізнайтесь, як використовувати RSC для швидких додатків.</p>",
+      "author": 1,
+      "published_at": "2025-05-10T12:00:00Z",
+      "featured": true,
+      "thumbnail": "articles/thumbnails/react-server-components.jpg"
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 203,
+    "fields": {
+      "article": 102,
+      "order": 1,
+      "title": "Що таке React Server Components?",
+      "content": "<p>React Server Components — це компоненти, які рендеряться на сервері та відправляються до клієнта як статичний HTML з мінімальною JS-логікою.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "// server component\nexport default async function ProductList() {\n  const products = await fetchData();\n  return <ul>{products.map(p => <li key={p.id}>{p.name}</li>)}</ul>;\n}",
+      "language": "javascript",
+      "code_description": "Приклад серверного компонента в Next.js."
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 204,
+    "fields": {
+      "article": 102,
+      "order": 2,
+      "title": "Коли використовувати RSC?",
+      "content": "<p>RSC підходять для статичного контенту, списків товарів чи постів, де потрібне SEO та швидкі завантаження без клієнтської взаємодії.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "import ProductList from './ProductList';\nexport default function Page() {\n  return <ProductList />;\n}",
+      "language": "typescript",
+      "code_description": "Імпорт та використання серверного компонента."
+    }
+  },
+  {
+    "model": "articles.article",
+    "pk": 103,
+    "fields": {
+      "title": "CSS Container Queries: новий рівень адаптивності",
+      "slug": "css-container-queries-guide",
+      "article_type": "news",
+      "description": "Container Queries у CSS дозволяють адаптувати компоненти до розмірів батьківського контейнера, а не вікна.",
+      "summary": "<ul><li>Сучасний адаптивний дизайн</li><li>Приклади використання</li><li>Порівняння з Media Queries</li></ul><p>Забезпечте гнучкість UI-компонентів.</p>",
+      "author": 1,
+      "published_at": "2025-05-27T12:00:00Z",
+      "featured": false,
+      "thumbnail": "articles/thumbnails/container-queries.jpg"
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 205,
+    "fields": {
+      "article": 103,
+      "order": 1,
+      "title": "Основи Container Queries",
+      "content": "<p>Container Queries реагують на розміри контейнера через властивість container-type.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": ".card {\n  container-type: inline-size;\n}\n@container (min-width: 400px) {\n  .card {\n    font-size: 1.25rem;\n  }\n}",
+      "language": "css",
+      "code_description": "Приклад Container Query для зміни шрифту в залежності від ширини контейнера."
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 206,
+    "fields": {
+      "article": 103,
+      "order": 2,
+      "title": "Поради та підтримка",
+      "content": "<p>Використовуйте сучасні браузери: Chrome, Firefox, Safari. Перевіряйте розмір контейнера та додавайте назву через container-name.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": ".container {\n  container-type: size;\n  container-name: main;\n}\n@container main (max-width: 500px) {\n  .element { padding: 1rem; }\n}",
+      "language": "css",
+      "code_description": "Створення контейнера та написання запиту з іменем контейнера."
+    }
+  },
+  {
+    "model": "articles.article",
+    "pk": 104,
+    "fields": {
+      "title": "Завдання: Погода в твоєму місті через OpenWeather API",
+      "slug": "weather-widget-openweather-task",
+      "article_type": "task",
+      "description": "Створіть погодний віджет на основі OpenWeather API, який відображає температуру, опис погоди та іконку.",
+      "summary": "<ul><li>Запит до OpenWeather API</li><li>Обробка JSON-відповіді</li><li>Динамічний оновлюваний UI</li></ul><p>Чудовий спосіб навчитися інтеграції зовнішніх API.</p>",
+      "author": 1,
+      "published_at": "2025-05-25T12:00:00Z",
+      "featured": false,
+      "thumbnail": "articles/thumbnails/weather-task.jpg"
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 207,
+    "fields": {
+      "article": 104,
+      "order": 1,
+      "title": "Налаштування API та базова розмітка",
+      "content": "<p>Отримайте API key на OpenWeather, створіть форму з input для міста та кнопку для отримання даних.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "<input id=\"city\" placeholder=\"Введіть місто\"/>\n<button id=\"getWeather\">Отримати погоду</button>\n<div id=\"output\"></div>",
+      "language": "html",
+      "code_description": "HTML-шаблон вхідних даних і вихідного контейнера."
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 208,
+    "fields": {
+      "article": 104,
+      "order": 2,
+      "title": "JS-логіка та покращення UI",
+      "content": "<p>Реалізуйте fetch-запит та обробку відповіді, додайте спінер та обробку помилок.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "const btn = document.getElementById('getWeather');\nbtn.addEventListener('click', () => {\n  const city = document.getElementById('city').value;\n  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=YOUR_API_KEY&units=metric`)\n    .then(res => res.json())\n    .then(data => {\n      document.getElementById('output').innerHTML = `Температура: ${data.main.temp}°C<br>Погода: ${data.weather[0].description}`;\n    })\n    .catch(() => document.getElementById('output').innerText = 'Помилка при отриманні даних');\n});",
+      "language": "javascript",
+      "code_description": "Обробка відповіді API з показом даних і помилок."
+    }
+  },
+  {
+    "model": "articles.article",
+    "pk": 105,
+    "fields": {
+      "title": "Веб-компоненти: стандартизований шлях до багаторазових UI-елементів",
+      "slug": "web-components-modern-approach",
+      "article_type": "news",
+      "description": "Web Components дозволяють створювати ізольовані елементи без залежності від фреймворків. Shadow DOM, Custom Elements, HTML Templates.",
+      "summary": "<ul><li>Shadow DOM</li><li>Custom Elements</li><li>Шаблони HTML</li></ul><p>Побудуйте бібліотеку компонентів, яка працює з будь-яким стеком.</p>",
+      "author": 1,
+      "published_at": "2025-04-09T12:00:00Z",
+      "featured": false,
+      "thumbnail": "articles/thumbnails/web-components.jpg"
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 209,
+    "fields": {
+      "article": 105,
+      "order": 1,
+      "title": "Структура Web Component",
+      "content": "<p>Custom Elements, Shadow DOM, HTML Templates — три стовпи Web Components.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "class MyElement extends HTMLElement {\n  constructor() { \n    super();\n    const shadow = this.attachShadow({ mode: 'open' });\n    shadow.innerHTML = `<style>p{color:red;}</style><p>Привіт!</p>`;\n  }\n}\ncustomElements.define('my-element', MyElement);",
+      "language": "javascript",
+      "code_description": "Створення простого Web Component із Shadow DOM."
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 210,
+    "fields": {
+      "article": 105,
+      "order": 2,
+      "title": "Де використовувати Web Components",
+      "content": "<p>Гарні для віджетів, модалок, кнопок — повторно використовувані елементи у різних проектах.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "<my-element></my-element>",
+      "language": "html",
+      "code_description": "Використання кастомного елемента."
+    }
+  },
+  {
+    "model": "articles.article",
+    "pk": 106,
+    "fields": {
+      "title": "Завдання: Форма з валідацією та локальним збереженням",
+      "slug": "form-validation-localstorage-task",
+      "article_type": "task",
+      "description": "Створіть форму з полями ім'я, email, вік з валідацією та збереженням даних у LocalStorage.",
+      "summary": "<ul><li>HTML-форма</li><li>JS-валидація</li><li>LocalStorage</li></ul><p>Практика роботи з формами і збереженням стану.</p>",
+      "author": 1,
+      "published_at": "2025-04-29T12:00:00Z",
+      "featured": false,
+      "thumbnail": "articles/thumbnails/form-validation-task.jpg"
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 211,
+    "fields": {
+      "article": 106,
+      "order": 1,
+      "title": "HTML-розмітка форми",
+      "content": "<p>Поля: name, email, age, кнопка submit неактивна до валідності полів.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "<form id=\"user-form\">\n  <input name=\"name\" required placeholder=\"Ім'я\"/>\n  <input type=\"email\" name=\"email\" required placeholder=\"Email\"/>\n  <input type=\"number\" name=\"age\" min=18 required placeholder=\"Вік\"/>\n  <button type=\"submit\" disabled>Надіслати</button>\n</form>",
+      "language": "html",
+      "code_description": "Базова форма з атрибутами валідності."
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 212,
+    "fields": {
+      "article": 106,
+      "order": 2,
+      "title": "JS-логіка валідації і збереження",
+      "content": "<p>Перевірка валідності полів, активація кнопки, збереження та відновлення даних з LocalStorage.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "const form = document.getElementById('user-form');\nconst btn = form.querySelector('button');\nconst inputs = form.querySelectorAll('input');\ninputs.forEach(i => i.addEventListener('input', () => {\n  btn.disabled = ![...inputs].every(inp => inp.checkValidity());\n}));\nform.addEventListener('submit', e => {\n  e.preventDefault();\n  const data = Object.fromEntries(new FormData(form));\n  localStorage.setItem('userForm', JSON.stringify(data));\n  alert('Збережено!');\n});\nwindow.addEventListener('DOMContentLoaded', () => {\n  const saved = JSON.parse(localStorage.getItem('userForm'));\n  if (saved) Object.entries(saved).forEach(([k,v]) => form.elements[k].value = v);\n});",
+      "language": "javascript",
+      "code_description": "Логіка валідації, збереження та відновлення."
+    }
+  },
+  {
+    "model": "articles.article",
+    "pk": 107,
+    "fields": {
+      "title": "TypeScript 5.5: Що нового?",
+      "slug": "typescript-5-5-whats-new",
+      "article_type": "news",
+      "description": "Огляд ключових нововведень TS 5.5: оператор satisfies, покращена інференція типів, швидша компіляція.",
+      "summary": "<ul><li>Оператор satisfies</li><li>Інференція з умовними типами</li><li>Прискорення білду</li></ul><p>TypeScript продовжує еволюціювати для фронтенд-розробників.</p>",
+      "author": 1,
+      "published_at": "2025-05-01T12:00:00Z",
+      "featured": false,
+      "thumbnail": "articles/thumbnails/typescript-5-5.jpg"
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 213,
+    "fields": {
+      "article": 107,
+      "order": 1,
+      "title": "Оператор satisfies",
+      "content": "<p>Operator satisfies перевіряє, чи відповідає об'єкт певному типу без зміни інференції.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "const person = { name: 'Оля', age: 25 } satisfies { name: string; age: number };",
+      "language": "typescript",
+      "code_description": "Приклад satisfies."
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 214,
+    "fields": {
+      "article": 107,
+      "order": 2,
+      "title": "Інші покращення",
+      "content": "<p>Збільшена швидкість компіляції, покращена інференція в умовних типах та краща інтеграція з редакторами.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "function tuple<T, U>(a: T, b: U) { return [a, b] as const; }",
+      "language": "typescript",
+      "code_description": "Функція з новою інференцією типів."
+    }
+  },
+  {
+    "model": "articles.article",
+    "pk": 108,
+    "fields": {
+      "title": "Next.js 14: оптимізація продуктивності та Middleware",
+      "slug": "nextjs-14-optimizatsiya-performance-middleware",
+      "article_type": "news",
+      "description": "Огляд ключових можливостей Next.js 14 з фокусом на продуктивність, нових Middleware та інтеграцію з Edge Functions.",
+      "summary": "<ul><li>Покращена продуктивність</li><li>Нові Middleware</li><li>Edge Functions</li></ul><p>Дізнайтесь, як використати нові можливості Next.js 14 для створення швидких та безпечних додатків.</p>",
+      "author": 1,
+      "published_at": "2025-05-29T12:00:00Z",
+      "featured": false,
+      "thumbnail": "articles/thumbnails/nextjs-14-optimizatsiya-performance-middleware.jpg"
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 215,
+    "fields": {
+      "article": 108,
+      "order": 1,
+      "title": "Нові Middleware у Next.js 14",
+      "content": "<p>У Next.js 14 Middleware дозволяють виконувати код до обробки запиту в маршруті, що корисно для аутентифікації, логування та перенаправлень.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "export function middleware(request) {\n  console.log('Path:', request.nextUrl.pathname);\n  return NextResponse.next();\n}",
+      "language": "javascript",
+      "code_description": "Приклад Middleware для логування шляхів запитів."
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 216,
+    "fields": {
+      "article": 108,
+      "order": 2,
+      "title": "Інтеграція Edge Functions",
+      "content": "<p>Edge Functions у Next.js 14 виконуються на краю мережі, що зменшує затримки та покращує час відгуку для користувачів по всьому світу.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "export const config = { runtime: 'edge' };\n\nexport default async function handler(req) {\n  return new Response('Hello from the Edge');\n}",
+      "language": "javascript",
+      "code_description": "Приклад Edge Function у Next.js 14 для обробки запитів на краю."
+    }
+  },
+  {
+    "model": "articles.article",
+    "pk": 109,
+    "fields": {
+      "title": "GraphQL Federation: об'єднання схем для масштабних проектів",
+      "slug": "graphql-federation-schema-obiednannya",
+      "article_type": "news",
+      "description": "Як реалізувати Federation у GraphQL для розподілених сервісів та єдиної схеми API.",
+      "summary": "<ul><li>Розподілена схема</li><li>Apollo Federation</li><li>Керування версіями API</li></ul><p>Детальний гайд зі створення масштабованих GraphQL API за допомогою Federation.</p>",
+      "author": 1,
+      "published_at": "2025-05-30T12:00:00Z",
+      "featured": false,
+      "thumbnail": "articles/thumbnails/graphql-federation-schema-obiednannya.jpg"
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 217,
+    "fields": {
+      "article": 109,
+      "order": 1,
+      "title": "Основи Apollo Federation",
+      "content": "<p>Apollo Federation дозволяє створювати субсервіси з власними схемами, які потім об'єднуються в єдину схему Gateway.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "const { ApolloServer } = require('@apollo/server');\nconst { buildSubgraphSchema } = require('@apollo/subgraph');\n\nconst typeDefs = `\n  type Product @key(fields: \\\"id\\\") {\n    id: ID!\n    name: String\n  }\n  extend type Query {\n    products: [Product]\n  }\n`;\nconst resolvers = { Query: { products: () => [{ id: '1', name: 'Example' }] } };\n\nconst server = new ApolloServer({ schema: buildSubgraphSchema({ typeDefs, resolvers }) });\nserver.listen({ port: 4001 });",
+      "language": "javascript",
+      "code_description": "Субсервіс з використанням Apollo Federation."
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 218,
+    "fields": {
+      "article": 109,
+      "order": 2,
+      "title": "Налаштування GraphQL Gateway",
+      "content": "<p>Gateway об'єднує субсервіси та забезпечує єдиний ендпоінт для клієнтів.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "const { ApolloServer } = require('@apollo/server');\nconst { ApolloGateway } = require('@apollo/gateway');\n\nconst gateway = new ApolloGateway({\n  serviceList: [\n    { name: 'products', url: 'http://localhost:4001/graphql' },\n    { name: 'reviews', url: 'http://localhost:4002/graphql' }\n  ]\n});\n\n(async () => {\n  const server = new ApolloServer({ gateway, subscriptions: false });\n  await server.listen({ port: 4000 });\n  console.log(`Gateway ready at http://localhost:4000`);\n})();",
+      "language": "javascript",
+      "code_description": "Приклад налаштування Apollo Gateway."
+    }
+  },
+  {
+    "model": "articles.article",
+    "pk": 110,
+    "fields": {
+      "title": "Vue 3.3: нові можливості Composition API та Teleport",
+      "slug": "vue-3-3-novi-mozhlyvosti-composition-teleport",
+      "article_type": "news",
+      "description": "Огляд оновлень у Vue 3.3: покращення Composition API, розширення Teleport та нові утиліти.",
+      "summary": "<ul><li>Покращена реактивність</li><li>Нові утиліти Composition API</li><li>Розширення Teleport</li></ul><p>Дізнайтесь, як використовувати оновлені API для більш чистої архітектури компонентів.</p>",
+      "author": 1,
+      "published_at": "2025-05-31T12:00:00Z",
+      "featured": false,
+      "thumbnail": "articles/thumbnails/vue-3-3-novi-mozhlyvosti-composition-teleport.jpg"
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 219,
+    "fields": {
+      "article": 110,
+      "order": 1,
+      "title": "Нові утиліти Composition API",
+      "content": "<p>Vue 3.3 представив defineModel та toRefProps для спрощення двостороннього зв’язку між props та emits.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "import { defineModel } from 'vue';\n\nexport default {\n  props: ['modelValue'],\n  emits: ['update:modelValue'],\n  setup(props, { emit }) {\n    const model = defineModel(props, emit);\n    return { model };\n  }\n};",
+      "language": "javascript",
+      "code_description": "Використання defineModel для двостороннього зв’язку в компоненті."
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 220,
+    "fields": {
+      "article": 110,
+      "order": 2,
+      "title": "Розширені можливості Teleport",
+      "content": "<p>Teleport дозволяє рендерити компоненти поза основним DOM-деревом, наприклад для модальних вікон та поповерів.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "<teleport to='#modals'>\n  <Modal />\n</teleport>",
+      "language": "html",
+      "code_description": "Використання Teleport для модальних вікон у Vue."
+    }
+  },
+  {
+    "model": "articles.article",
+    "pk": 111,
+    "fields": {
+      "title": "Performance Budgets: встановлення меж для швидкого завантаження",
+      "slug": "performance-budgets-vstanovlennya-mezh",
+      "article_type": "news",
+      "description": "Як встановлювати та контролювати Performance Budgets у фронтенд-проектах для оптимальної продуктивності.",
+      "summary": "<ul><li>Визначення бюджетів</li><li>Інструменти моніторингу</li><li>Інтеграція з CI/CD</li></ul><p>Дізнайтесь про налаштування обмежень, щоб тримати швидкість завантаження під контролем.</p>",
+      "author": 1,
+      "published_at": "2025-06-01T12:00:00Z",
+      "featured": false,
+      "thumbnail": "articles/thumbnails/performance-budgets-vstanovlennya-mezh.jpg"
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 221,
+    "fields": {
+      "article": 111,
+      "order": 1,
+      "title": "Що таке Performance Budget",
+      "content": "<p>Performance Budget — це набір обмежень на вага ресурсів, час завантаження та інші метрики.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "module.exports = {\n  performance: {\n    maxAssetSize: 200000,\n    maxEntrypointSize: 400000\n  }\n};",
+      "language": "javascript",
+      "code_description": "Налаштування Performance Budget у Webpack."
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 222,
+    "fields": {
+      "article": 111,
+      "order": 2,
+      "title": "Автоматизація перевірок з Lighthouse CI",
+      "content": "<p>Використовуйте Lighthouse CI для автоматичного вимірювання продуктивності під час кожного деплою.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "module.exports = {\n  ci: {\n    collect: { url: ['http://localhost:3000'] },\n    assert: {\n      assertions: {\n        'categories:performance': ['error', { minScore: 0.9 }]\n      }\n    }\n  }\n};",
+      "language": "javascript",
+      "code_description": "Конфігурація Lighthouse CI для перевірки Performance Budget."
+    }
+  },
+  {
+    "model": "articles.article",
+    "pk": 112,
+    "fields": {
+      "title": "Motion One: легка анімаційна бібліотека для сучасних UI",
+      "slug": "motion-one-lehka-animatsiyna-biblioteka-ui",
+      "article_type": "news",
+      "description": "Огляд Motion One — легкої бібліотеки анімацій на основі Web Animations API.",
+      "summary": "<ul><li>Простий синтаксис</li><li>Підтримка Web Animations API</li><li>Малий розмір бандлу</li></ul><p>Дізнайтесь, як Motion One допомагає створювати плавні анімації без зайвого коду.</p>",
+      "author": 1,
+      "published_at": "2025-05-24T12:00:00Z",
+      "featured": false,
+      "thumbnail": "articles/thumbnails/motion-one-lehka-animatsiyna-biblioteka-ui.jpg"
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 223,
+    "fields": {
+      "article": 112,
+      "order": 1,
+      "title": "Встановлення та базовий приклад",
+      "content": "<p>Встановіть Motion One через npm та створіть просту анімацію елементу.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "import { animate } from 'motion';\n\nconst ball = document.querySelector('.ball');\nanimate(ball, { x: 300, scale: 0.5 }, { duration: 1 });",
+      "language": "javascript",
+      "code_description": "Проста анімація з Motion One."
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 224,
+    "fields": {
+      "article": 112,
+      "order": 2,
+      "title": "Паралельні та послідовні анімації",
+      "content": "<p>Motion One дозволяє легко створювати композиції анімацій з допомогою timeline.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "import { timeline } from 'motion';\n\ntimeline([\n  ['.box', { opacity: 1 }, { duration: 0.5 }],\n  ['.box', { rotate: 90 }, { duration: 0.5 }]\n]);",
+      "language": "javascript",
+      "code_description": "Приклад timeline для послідовних анімацій."
+    }
+  },
+  {
+    "model": "articles.article",
+    "pk": 113,
+    "fields": {
+      "title": "Vite 5: нові можливості та плагіни",
+      "slug": "vite-5-novi-mozhlyvosti-plugins",
+      "article_type": "news",
+      "description": "Що нового у Vite 5: покращена швидкість білду, оновлені плагіни та підтримка SSR.",
+      "summary": "<ul><li>Швидша збірка</li><li>Оновлені плагіни</li><li>Покращена підтримка SSR</li></ul><p>Ознайомтесь з ключовими оновленнями та як вони вплинуть на ваш робочий процес.</p>",
+      "author": 1,
+      "published_at": "2025-05-25T12:00:00Z",
+      "featured": false,
+      "thumbnail": "articles/thumbnails/vite-5-novi-mozhlyvosti-plugins.jpg"
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 225,
+    "fields": {
+      "article": 113,
+      "order": 1,
+      "title": "Покращена швидкість білду",
+      "content": "<p>Vite 5 використовує оптимізовані алгоритми для швидшого розбиття та пакування модулів.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "export default defineConfig({\n  build: { target: 'esnext', sourcemap: true }\n});",
+      "language": "javascript",
+      "code_description": "Конфігурація білду у vite.config.js."
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 226,
+    "fields": {
+      "article": 113,
+      "order": 2,
+      "title": "Нові плагіни та можливості",
+      "content": "<p>Ознайомтесь з оновленими плагінами, такими як vite-plugin-imagemin для оптимізації зображень.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "import viteImagemin from 'vite-plugin-imagemin';\n\nexport default defineConfig({\n  plugins: [viteImagemin()]\n});",
+      "language": "javascript",
+      "code_description": "Використання плагіна vite-plugin-imagemin."
+    }
+  },
+  {
+    "model": "articles.article",
+    "pk": 114,
+    "fields": {
+      "title": "Завдання: Dark/Light тема з CSS Variables та LocalStorage",
+      "slug": "theme-switcher-css-variables-localstorage",
+      "article_type": "task",
+      "description": "Створіть перемикач теми (темна/світла) з використанням CSS Variables та збереженням вибору у LocalStorage.",
+      "summary": "<ul><li>CSS Variables</li><li>LocalStorage</li><li>Динамічна зміна теми</li></ul><p>Практичне завдання для освоєння роботи зі змінними CSS та збереженням стану клієнта.</p>",
+      "author": 1,
+      "published_at": "2025-05-26T12:00:00Z",
+      "featured": false,
+      "thumbnail": "articles/thumbnails/theme-switcher-css-variables-localstorage.jpg"
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 227,
+    "fields": {
+      "article": 114,
+      "order": 1,
+      "title": "HTML та CSS Variables",
+      "content": "<p>Додайте кнопку для перемикання теми та опишіть CSS Variables для основних кольорів.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "<button id='theme-toggle'>Перемкнути тему</button>\n<style>\n  :root {\n    --bg-color: #ffffff;\n    --text-color: #000000;\n  }\n  [data-theme='dark'] {\n    --bg-color: #121212;\n    --text-color: #ffffff;\n  }\n  body { background: var(--bg-color); color: var(--text-color); }\n</style>",
+      "language": "html",
+      "code_description": "HTML кнопка та визначення CSS Variables для тем."
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 228,
+    "fields": {
+      "article": 114,
+      "order": 2,
+      "title": "JavaScript та LocalStorage",
+      "content": "<p>Реалізуйте логіку перемикання теми та збереження вибору користувача у LocalStorage.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "const btn = document.getElementById('theme-toggle');\nconst currentTheme = localStorage.getItem('theme');\nif (currentTheme) document.documentElement.setAttribute('data-theme', currentTheme);\nbtn.addEventListener('click', () => {\n  const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';\n  document.documentElement.setAttribute('data-theme', theme);\n  localStorage.setItem('theme', theme);\n});",
+      "language": "javascript",
+      "code_description": "Логіка перемикання теми та збереження у LocalStorage."
+    }
+  },
+  {
+    "model": "articles.article",
+    "pk": 115,
+    "fields": {
+      "title": "Завдання: Drag & Drop Kanban-дошка з HTML5 API",
+      "slug": "drag-drop-kanban-board",
+      "article_type": "task",
+      "description": "Створіть просту Kanban-дошку зі списками та картками, які можна перетягувати за допомогою HTML5 Drag & Drop API.",
+      "summary": "<ul><li>Drag & Drop API</li><li>Перетягування карток</li><li>Збереження стану</li></ul><p>Практичне завдання для освоєння роботи з нативним API браузера.</p>",
+      "author": 1,
+      "published_at": "2025-05-27T12:00:00Z",
+      "featured": true,
+      "thumbnail": "articles/thumbnails/drag-drop-kanban-board.jpg"
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 229,
+    "fields": {
+      "article": 115,
+      "order": 1,
+      "title": "HTML-розмітка Kanban",
+      "content": "<p>Створіть структурні блоки для колонок (To Do, In Progress, Done) та карток.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "<div class='column' id='todo'><h3>To Do</h3></div>\n<div class='column' id='in-progress'><h3>In Progress</h3></div>\n<div class='column' id='done'><h3>Done</h3></div>\n<div class='card' draggable='true' id='task-1'>Завдання 1</div>",
+      "language": "html",
+      "code_description": "Базова розмітка колонок та карток для Kanban."
+    }
+  },
+  {
+    "model": "articles.articlesection",
+    "pk": 230,
+    "fields": {
+      "article": 115,
+      "order": 2,
+      "title": "JS-логіка перетягування",
+      "content": "<p>Додайте обробники dragstart, dragover та drop для переміщення карток між колонками.</p>",
+      "image": "",
+      "image_caption": "",
+      "code": "const cards = document.querySelectorAll('.card');\ncards.forEach(card => {\n  card.addEventListener('dragstart', e => {\n    e.dataTransfer.setData('text/plain', card.id);\n  });\n});\nconst columns = document.querySelectorAll('.column');\ncolumns.forEach(col => {\n  col.addEventListener('dragover', e => e.preventDefault());\n  col.addEventListener('drop', e => {\n    const id = e.dataTransfer.getData('text/plain');\n    const card = document.getElementById(id);\n    col.appendChild(card);\n  });\n});",
+      "language": "javascript",
+      "code_description": "Обробка подій Drag & Drop для Kanban-дошки."
+    }
+  }
+]

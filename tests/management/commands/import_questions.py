@@ -9,14 +9,11 @@ class Command(BaseCommand):
     help = 'Imports questions from JSON files to database'
 
     def handle(self, *args, **kwargs):
-        # Оновлений шлях до файлів на фронтенді
-        data_dir = os.path.join(settings.BASE_DIR, '..', 'fronteder-interview-portal-frontend', 'src', 'data')
+        data_dir = os.path.join(settings.BASE_DIR, '..', 'fronteder-interview-portal-backend', 'data', 'tests-tasks')
 
-        # Перевіряємо, чи існує директорія
         if not os.path.exists(data_dir):
             self.stdout.write(self.style.ERROR(f'Directory {data_dir} not found'))
-            # Спробуємо альтернативний шлях
-            data_dir = r'C:\Users\Ivan Kyrlan\Documents\Study\fronteder-interview-portal\fronteder-interview-portal-backend\data'
+            data_dir = r'C:\Users\Ivan Kyrlan\Documents\Study\fronteder-interview-portal\fronteder-interview-portal-backend\data\tests-tasks'
             if not os.path.exists(data_dir):
                 self.stdout.write(self.style.ERROR('No directory with questions found'))
                 return
@@ -34,10 +31,8 @@ class Command(BaseCommand):
 
         for test_title, filename in question_files.items():
             try:
-                # Отримуємо тест
                 test = Test.objects.get(title=test_title)
 
-                # Читаємо файл
                 file_path = os.path.join(data_dir, filename)
                 if not os.path.exists(file_path):
                     self.stdout.write(self.style.WARNING(f'File {file_path} not found'))
@@ -46,20 +41,16 @@ class Command(BaseCommand):
                 with open(file_path, 'r', encoding='utf-8') as file:
                     questions_data = json.load(file)
 
-                # Імпортуємо питання
                 imported_count = 0
                 for q_data in questions_data:
                     question_text = q_data.get('question', '').strip()
 
-                    # Пропускаємо порожні питання
                     if not question_text:
                         self.stdout.write(self.style.WARNING(f'Skipping empty question in {filename}'))
                         continue
 
-                    # Отримуємо відповіді
                     answers = q_data.get('answers', [])
 
-                    # Переконуємося, що є рівно 4 непорожні відповіді
                     valid_answers = [ans for ans in answers if ans and ans.strip()]
                     if len(valid_answers) != 4:
                         self.stdout.write(self.style.WARNING(
@@ -67,7 +58,6 @@ class Command(BaseCommand):
                         ))
                         continue
 
-                    # Перевіряємо індекс правильної відповіді
                     correct_answer_id = q_data.get('correctAnswerId')
                     if correct_answer_id is None or correct_answer_id < 0 or correct_answer_id >= len(valid_answers):
                         self.stdout.write(self.style.WARNING(
@@ -75,13 +65,11 @@ class Command(BaseCommand):
                         ))
                         correct_answer_id = 0
 
-                    # Створюємо питання
                     question = Question.objects.create(
                         test=test,
                         question=question_text
                     )
 
-                    # Створюємо відповіді
                     for idx, answer_text in enumerate(valid_answers):
                         Answer.objects.create(
                             question=question,

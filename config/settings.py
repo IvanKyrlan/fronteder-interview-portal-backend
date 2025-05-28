@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'forum',
     'interviews',
     'comments',
-    'core',
 ]
 
 REST_FRAMEWORK = {
@@ -60,8 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'core.middleware.PermissionsPolicyMiddleware',
-    'csp.middleware.CSPMiddleware',  # Додано CSP middleware
+    'csp.middleware.CSPMiddleware',
 ]
 
 CORS_ALLOWED_ORIGINS = [

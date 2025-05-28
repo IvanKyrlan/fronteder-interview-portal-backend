@@ -77,3 +77,15 @@ class ArticleAdmin(admin.ModelAdmin):
         if not obj.author_id:
             obj.author = request.user
         super().save_model(request, obj, form, change)
+
+@admin.register(ArticleSection)
+class ArticleSectionAdmin(admin.ModelAdmin):
+    list_display = ('id', 'article', 'order', 'title', 'language')
+    list_filter = ('language', 'article')
+    search_fields = ('title', 'content', 'code', 'code_description')
+    raw_id_fields = ('article',)
+    ordering = ('article', 'order')
+
+    formfield_overrides = {
+        models.TextField: {'widget': CustomTextareaWidget},
+    }
