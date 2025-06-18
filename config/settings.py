@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'forum',
     'interviews',
     'comments',
+    'core',
 ]
 
 REST_FRAMEWORK = {
