@@ -24,28 +24,70 @@ class ArticleSectionSerializer(serializers.ModelSerializer):
             'code', 'language', 'code_description'
         ]
 
+# class ArticleListSerializer(serializers.ModelSerializer):
+#     author_name = serializers.CharField(source='author.username', read_only=True)
+#     article_type_display = serializers.CharField(source='get_article_type_display', read_only=True)
+#     published_at = LocalDateTimeField(read_only=True)
+#
+#     class Meta:
+#         model = Article
+#         fields = [
+#             'id', 'title', 'slug', 'description', 'thumbnail',
+#             'author_name', 'published_at', 'article_type', 'article_type_display'
+#         ]
+
 class ArticleListSerializer(serializers.ModelSerializer):
     author_name = serializers.CharField(source='author.username', read_only=True)
     article_type_display = serializers.CharField(source='get_article_type_display', read_only=True)
     published_at = LocalDateTimeField(read_only=True)
+    thumbnail_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Article
         fields = [
-            'id', 'title', 'slug', 'description', 'thumbnail',
+            'id', 'title', 'slug', 'description',
+            'thumbnail', 'thumbnail_url',
             'author_name', 'published_at', 'article_type', 'article_type_display'
         ]
+
+    def get_thumbnail_url(self, obj):
+        if obj.thumbnail:
+            from django.conf import settings
+            return settings.MEDIA_URL + str(obj.thumbnail)
+        return None
+
+# class ArticleDetailSerializer(serializers.ModelSerializer):
+#     author_name = serializers.CharField(source='author.username', read_only=True)
+#     sections = ArticleSectionSerializer(many=True, read_only=True)
+#     article_type_display = serializers.CharField(source='get_article_type_display', read_only=True)
+#     published_at = LocalDateTimeField(read_only=True)
+#
+#     class Meta:
+#         model = Article
+#         fields = [
+#             'id', 'title', 'slug', 'description', 'summary',
+#             'thumbnail', 'author_name', 'published_at',
+#             'article_type', 'article_type_display', 'sections'
+#         ]
 
 class ArticleDetailSerializer(serializers.ModelSerializer):
     author_name = serializers.CharField(source='author.username', read_only=True)
     sections = ArticleSectionSerializer(many=True, read_only=True)
     article_type_display = serializers.CharField(source='get_article_type_display', read_only=True)
     published_at = LocalDateTimeField(read_only=True)
+    thumbnail_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Article
         fields = [
             'id', 'title', 'slug', 'description', 'summary',
-            'thumbnail', 'author_name', 'published_at',
+            'thumbnail', 'thumbnail_url',
+            'author_name', 'published_at',
             'article_type', 'article_type_display', 'sections'
         ]
+
+    def get_thumbnail_url(self, obj):
+        if obj.thumbnail:
+            from django.conf import settings
+            return settings.MEDIA_URL + str(obj.thumbnail)
+        return None
