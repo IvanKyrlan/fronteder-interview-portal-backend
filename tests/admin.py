@@ -5,9 +5,9 @@ from django.contrib.admin.widgets import AdminTextareaWidget
 
 class AnswerInline(admin.TabularInline):
     model = Answer
-    extra = 4  # 4 поля для відповідей за замовчуванням
-    max_num = 4  # Максимум 4 відповіді
-    min_num = 4  # Мінімум 4 відповіді
+    extra = 4
+    max_num = 4
+    min_num = 4
     validate_min = True
 
     def formfield_for_dbfield(self, db_field, **kwargs):
@@ -42,7 +42,6 @@ class QuestionAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
 
-        # Перевірка наявності хоча б однієї правильної відповіді
         if not obj.answers.filter(is_correct=True).exists():
             first_answer = obj.answers.first()
             if first_answer:
@@ -53,31 +52,24 @@ class QuestionAdmin(admin.ModelAdmin):
     def save_formset(self, request, form, formset, change):
         instances = formset.save(commit=False)
 
-        # Лічильник правильних відповідей
         correct_count = 0
 
-        # Перевіряємо, скільки правильних відповідей
         for instance in instances:
             if hasattr(instance, 'is_correct') and instance.is_correct:
                 correct_count += 1
 
-        # Якщо більше однієї правильної відповіді, показуємо повідомлення
         if correct_count > 1:
             self.message_user(request, 'Увага: Буде збережена тільки одна правильна відповідь!', level='WARNING')
 
-        # Якщо немає правильних відповідей, встановлюємо першу як правильну
         if correct_count == 0 and instances:
             instances[0].is_correct = True
             self.message_user(request,
                              'Автоматично встановлено першу відповідь як правильну, оскільки не вказано правильної відповіді.')
 
-        # Зберігаємо всі відповіді
         for instance in instances:
-            # Перевіряємо, чи не порожня відповідь
             if hasattr(instance, 'text') and instance.text.strip():
                 instance.save()
 
-        # Видаляємо відзначені для видалення
         formset.save_m2m()
 
 
